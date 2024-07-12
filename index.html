@@ -59,7 +59,48 @@
         </tbody></table>
 	      
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-	     <tr>
+	  <tr>
+              <td style="padding: 0px; padding-left: 20px; width:30%; vertical-align:middle; border: 0px solid black;" onmouseout="tqdm_stop()" onmouseover="tqdm_start()">
+                <div class="one">
+                  <div class="two" id='tqdm_video'><video  width=100% height="100%" muted autoplay loop>
+                  <source src="images/tqdm.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                  </video></div>
+                  <img id='tqdm_image' src='images/tqdm.png' width=100% height="100%">
+                </div>
+                <script type="text/javascript">
+                  function tqdm_start() {
+                    document.getElementById('tqdm_image').style.opacity = "0";
+                    document.getElementById('tqdm_video').style.opacity = "1";
+                  }
+            
+                  function tqdm_stop() {
+                    document.getElementById('tqdm_image').style.opacity = "1";
+                    document.getElementById('tqdm_video').style.opacity = "0";
+                  }
+                  tqdm_stop()
+                </script>
+              </td>
+              <td width="75%" valign="middle">
+                <strong>
+                  <span class="papertitle">Textual Query-Driven Mask Transformer for Domain Generalized Segmentation</span>
+                </strong>
+                <br>
+		<a href="https://byeonghyunpak.github.io/">Byeonghyun Pak</a>*,
+		<a href="https://byeongjuwoo.github.io//">Byeongju Woo</a>*,
+                <u>Sunghwan Kim</u>*, Dae-hwan Kim, Hoseong Kim
+                <br>
+                <em>ECCV</em>, 2024
+                <br>
+                <a href="https://github.com/ByeongHyunPak/tqdm">code</a> / 
+                <a href="https://arxiv.org/abs/2303.11546">paper</a> /
+	        <a href="https://byeonghyunpak.github.io/tqdm/">project page</a>
+                <p></p>
+                <p>We introduced a semantic segmentation method that generalizes well to unseen domains. Our method effectively handles domain shifts by using domain-invariant semantic knowledge from text embeddings of vision-language models (e.g., CLIP).</p>
+              </td>
+           </tr>   
+		
+	   <tr>
               <td style="padding:20px;width:25%;vertical-align:middle">
                 <img src="images/TLDR.jpg" alt="safs_small" width="160" height="160" style="border-style: none">
               </td>
