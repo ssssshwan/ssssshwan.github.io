@@ -55,29 +55,43 @@
         </tbody></table>    
 	      
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-	    <tr>
-	              <td style="padding:20px;width:25%;vertical-align:middle">
-	                <video width="160" height="160" muted autoplay loop style="border-style:none">
-	                  <source src="images/MISO.mp4" type="video/mp4">
-	                  Your browser does not support the video tag.
-	                </video>
-	              </td>
-	              <td width="75%" valign="middle">
-	                <strong>
-	                  <span class="papertitle">MISO: Multiresolution Submap Optimization for Efficient Globally Consistent Neural Implicit Reconstruction</span>
-	                </strong>
-	                <br>
-	        <a href="https://www.tianyulun.com/">Yulun Tian</a>,
-	        <a href="https://hwcao17.github.io/">Hanwen Cao</a>,
-	                <u>Sunghwan Kim</u>,
-	        <a href="https://natanaso.github.io//">Nikolay Atansov</a>,
-	                <br>
-	                <em>RSS</em>, 2025
-	                <br>
-	                <a href="https://github.com">code</a> / 
-	                <a href="https://arxiv.org/abs/2504.19104v1">paper</a> /
-	          <a href="https://existentialrobotics.org/miso_rss25/">project page</a>
-	              </td>
+	   <tr>
+              <td style="padding: 0px 20px 0px 20px; width:30%; vertical-align:middle; border: 0px;" onmouseout="miso_stop()" onmouseover="miso_start()">
+                <div class="one">
+                  <div class="two" id="miso_video"><video width="100%" height="100%" muted autoplay loop>
+                      <source src="images/MISO.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                  </video></div>
+                  <img id="miso_image" src="images/MISO.png" width="100%" height="100%">
+                </div>
+                <script type="text/javascript">
+                  function miso_start(){
+                    document.getElementById('miso_image').style.opacity = "0";
+                    document.getElementById('miso_video').style.opacity = "1";
+                  }
+                  function miso_stop(){
+                    document.getElementById('miso_image').style.opacity = "1";
+                    document.getElementById('miso_video').style.opacity = "0";
+                  }
+                  miso_stop();
+                </script>
+              </td>
+              <td width="70%" valign="middle">
+                <strong>
+                  <span class="papertitle">MISO: Multiresolution Submap Optimization for Efficient Globally Consistent Neural Implicit Reconstruction</span>
+                </strong>
+                <br>
+        <a href="https://www.tianyulun.com/">Yulun Tian</a>,
+        <a href="https://hwcao17.github.io/">Hanwen Cao</a>,
+                <u>Sunghwan Kim</u>,
+        <a href="https://natanaso.github.io//">Nikolay Atanasov</a>,
+                <br>
+                <em>RSS</em>, 2025
+                <br>
+                <a href="https://github.com">code</a> / 
+                <a href="https://arxiv.org/abs/2504.19104v1">paper</a> /
+          <a href="https://existentialrobotics.org/miso_rss25/">project page</a>
+              </td>
             </tr>
 		
 	  <tr>
