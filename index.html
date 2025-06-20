@@ -58,20 +58,20 @@
 	<tr>
               <td style="padding: 0px 20px 0px 20px; width:30%; vertical-align:middle; border: 0px;" onmouseout="miso_stop()" onmouseover="miso_start()">
                 <div class="one">
-                  <div class="two" id="miso_video"><video width="100%" height="100%" muted autoplay loop>
-                      <source src="images/MISO.mp4" type="video/mp4">
+                  <div class="two" id="sbtp_video"><video width="100%" height="100%" muted autoplay loop>
+                      <source src="images/stbp.mp4" type="video/mp4">
                       Your browser does not support the video tag.
                   </video></div>
-                  <img id="miso_image" src="images/MISO.png" width="100%" height="100%">
+                  <img id="sbtp_image" src="images/sbtp.png" width="100%" height="100%">
                 </div>
                 <script type="text/javascript">
                   function miso_start(){
-                    document.getElementById('miso_image').style.opacity = "0";
-                    document.getElementById('miso_video').style.opacity = "1";
+                    document.getElementById('sbtp_image').style.opacity = "0";
+                    document.getElementById('sbtp_video').style.opacity = "1";
                   }
                   function miso_stop(){
-                    document.getElementById('miso_image').style.opacity = "1";
-                    document.getElementById('miso_video').style.opacity = "0";
+                    document.getElementById('sbtp_image').style.opacity = "1";
+                    document.getElementById('sbtp_video').style.opacity = "0";
                   }
                   miso_stop();
                 </script>
