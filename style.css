@@ -1,0 +1,266 @@
+/* Andy Zeng Website Template CSS */
+
+body {
+  font-family: 'Asap', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+#body {
+  background-color: #f5f5f5;
+}
+
+#main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Intro Section */
+#intro {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  padding: 20px 0;
+}
+
+#intro-text {
+  flex: 2;
+  padding-right: 30px;
+}
+
+#intro-text h1 {
+  font-size: 2.5em;
+  margin: 0 0 20px 0;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+#intro-text p {
+  font-size: 1.1em;
+  margin: 0 0 15px 0;
+  line-height: 1.7;
+}
+
+#intro-text a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#intro-text a:hover {
+  text-decoration: underline;
+}
+
+#intro-image {
+  flex: 1;
+  text-align: center;
+}
+
+#intro-image img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ecf0f1;
+}
+
+/* Research Section */
+#research-section {
+  margin-bottom: 40px;
+  padding: 20px 0;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+#research-section h2 {
+  font-size: 2em;
+  margin: 0 0 20px 0;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+#research-section p {
+  font-size: 1.1em;
+  margin: 0 0 15px 0;
+  line-height: 1.7;
+  color: #555;
+}
+
+#research-section ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+#research-section li {
+  font-size: 1.1em;
+  margin-bottom: 8px;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Grid Layout */
+.grid {
+  margin-bottom: 40px;
+}
+
+.list-item {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ecf0f1;
+  border-radius: 8px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.list-item:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.list-item.publication {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Thumbnails */
+.thumbnail {
+  flex-shrink: 0;
+  margin-right: 20px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.thumbnail img,
+.thumbnail video {
+  display: block;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail:hover img,
+.thumbnail:hover video {
+  transform: scale(1.05);
+}
+
+/* Video hover effects */
+.one {
+  position: relative;
+  width: 180px;
+  height: 180px;
+}
+
+.two {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease;
+}
+
+/* Project descriptions */
+.project-description {
+  flex: 1;
+}
+
+.project-description h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.3em;
+  color: #2c3e50;
+}
+
+.project-description h3 a {
+  color: #2c3e50;
+  text-decoration: none;
+}
+
+.project-description h3 a:hover {
+  color: #3498db;
+}
+
+.project-description p {
+  margin: 0;
+  line-height: 1.6;
+  color: #555;
+}
+
+.project-description a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.project-description a:hover {
+  text-decoration: underline;
+}
+
+/* Clustrmaps Section - Hidden */
+#clustrmaps-section {
+  display: none;
+}
+
+/* Footer */
+#footer {
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid #ecf0f1;
+  color: #7f8c8d;
+  font-size: 0.9em;
+}
+
+#footer a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+#footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  #intro {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  #intro-text {
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+  
+  .list-item.publication {
+    flex-direction: column;
+  }
+  
+  .thumbnail {
+    margin-right: 0;
+    margin-bottom: 15px;
+    align-self: center;
+  }
+  
+  #main {
+    padding: 15px;
+  }
+}
+
+/* Isotope transitions */
+.isotope-item {
+  transition: all 0.3s ease;
+}
+
+/* Links in bio */
+#intro-text a[href^="javascript:"] {
+  color: #3498db;
+  cursor: pointer;
+}
+
+#intro-text a[href^="javascript:"]:hover {
+  text-decoration: underline;
+}
