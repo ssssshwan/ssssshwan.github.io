@@ -45,9 +45,9 @@
             Previously, I was a research officer at the <a href="https://www.add.re.kr/eps">Agency for Defense Development (ADD)</a>, the South Korean counterpart to the U.S. DARPA. I received my B.S. in Electrical Engineering and Mathematics (double major) at <a href="https://www.kaist.ac.kr/en/">KAIST</a>.
           </p>
           <p>
-            <a href="mailto:suk063@ucsd.edu">Email</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="https://www.linkedin.com/in/ssshwan/">LinkedIn</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="https://scholar.google.com/citations?user=rhOJlOUAAAAJ&hl=en">G. Scholar</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="mailto:suk063@ucsd.edu">Email</a>&nbsp;&nbsp;
+            <a href="https://www.linkedin.com/in/ssshwan/">LinkedIn</a>&nbsp;&nbsp;
+            <a href="https://scholar.google.com/citations?user=rhOJlOUAAAAJ&hl=en">G. Scholar</a>&nbsp;&nbsp;
             <a href="https://github.com/ssssshwan/">Github</a>
           </p>
         </div>
@@ -74,12 +74,7 @@
         <!-- Publications -->
         <div class="list-item publication" data-category="publication">
           <a href="https://openreview.net/pdf?id=j0hzlSl1R9" class="thumbnail">
-            <div class="one">
-              <div class="two" id="sbtp_video"><video width="180px" height="180px" muted autoplay loop>
-                  <source src="images/sbtp.mp4" type="video/mp4">
-              </video></div>
-              <img id="sbtp_image" src="images/sbtp.png" width="180px" height="180px">
-            </div>
+            <img src="images/sbtp.png" alt="" />
           </a>
           <div class="project-description">
             <h3><a href="https://openreview.net/pdf?id=j0hzlSl1R9">Seeing the Bigger Picture: 3D Latent Mapping for Mobile Manipulation Policy Learning</a></h3>
@@ -94,12 +89,7 @@
 
         <div class="list-item publication" data-category="publication">
           <a href="https://arxiv.org/abs/2504.19104v1" class="thumbnail">
-            <div class="one">
-              <div class="two" id="miso_video"><video width="180px" height="180px" muted autoplay loop>
-                  <source src="images/MISO.mp4" type="video/mp4">
-              </video></div>
-              <img id="miso_image" src="images/MISO.png" width="180px" height="180px">
-            </div>
+            <img src="images/MISO.png" alt="" />
           </a>
           <div class="project-description">
             <h3><a href="https://arxiv.org/abs/2504.19104v1">MISO: Multiresolution Submap Optimization for Efficient Globally Consistent Neural Implicit Reconstruction</a></h3>
@@ -114,12 +104,7 @@
 
         <div class="list-item publication" data-category="publication">
           <a href="https://arxiv.org/pdf/2407.09033" class="thumbnail">
-            <div class="one">
-              <div class="two" id='tqdm_video'><video width="180px" height="180px" muted autoplay loop>
-              <source src="images/tqdm.mp4" type="video/mp4">
-              </video></div>
-              <img id='tqdm_image' src='images/tqdm.png' width="180px" height="180px">
-            </div>
+            <img src="images/tqdm.png" alt="" />
           </a>
           <div class="project-description">
             <h3><a href="https://arxiv.org/pdf/2407.09033">Textual Query-Driven Mask Transformer for Domain Generalized Segmentation</a></h3>
@@ -135,7 +120,7 @@
 
         <div class="list-item publication" data-category="publication">
           <a href="https://arxiv.org/abs/2303.11546" class="thumbnail">
-            <img src="images/TLDR.jpg" alt="TLDR" width="180px" height="180px">
+            <img src="images/TLDR.jpg" alt="" />
           </a>
           <div class="project-description">
             <h3><a href="https://arxiv.org/abs/2303.11546">Texture Learning Domain Randomization for Domain Generalized Segmentation</a></h3>
@@ -150,7 +135,7 @@
 
         <div class="list-item publication" data-category="publication">
           <a href="https://spie.org/spie-sensors-imaging/presentation/Data-gathering-trials-for-the-development-of-military-imaging-systems/12737-27" class="thumbnail">
-            <img src="images/Trial.jpg" alt="Trial" width="180px" height="180px">
+            <img src="images/Trial.jpg" alt="" />
           </a>
           <div class="project-description">
             <h3><a href="https://spie.org/spie-sensors-imaging/presentation/Data-gathering-trials-for-the-development-of-military-imaging-systems/12737-27">Data Gathering Trials for the Development of Military Imaging Systems</a></h3>
@@ -174,69 +159,5 @@
 
     </div>
 
-    <script>
-      // Initialize video hover effects
-      function initializeVideoHover() {
-        // SBTP video
-        const sbtpVideo = document.getElementById('sbtp_video');
-        const sbtpImage = document.getElementById('sbtp_image');
-        
-        if (sbtpVideo && sbtpImage) {
-          sbtpVideo.style.opacity = "0";
-          sbtpImage.style.opacity = "1";
-          
-          sbtpImage.addEventListener('mouseenter', () => {
-            sbtpImage.style.opacity = "0";
-            sbtpVideo.style.opacity = "1";
-          });
-          
-          sbtpImage.addEventListener('mouseleave', () => {
-            sbtpImage.style.opacity = "1";
-            sbtpVideo.style.opacity = "0";
-          });
-        }
-
-        // MISO video
-        const misoVideo = document.getElementById('miso_video');
-        const misoImage = document.getElementById('miso_image');
-        
-        if (misoVideo && misoImage) {
-          misoVideo.style.opacity = "0";
-          misoImage.style.opacity = "1";
-          
-          misoImage.addEventListener('mouseenter', () => {
-            misoImage.style.opacity = "0";
-            misoVideo.style.opacity = "1";
-          });
-          
-          misoImage.addEventListener('mouseleave', () => {
-            misoImage.style.opacity = "1";
-            misoVideo.style.opacity = "0";
-          });
-        }
-
-        // TQDM video
-        const tqdmVideo = document.getElementById('tqdm_video');
-        const tqdmImage = document.getElementById('tqdm_image');
-        
-        if (tqdmVideo && tqdmImage) {
-          tqdmVideo.style.opacity = "0";
-          tqdmImage.style.opacity = "1";
-          
-          tqdmImage.addEventListener('mouseenter', () => {
-            tqdmImage.style.opacity = "0";
-            tqdmVideo.style.opacity = "1";
-          });
-          
-          tqdmImage.addEventListener('mouseleave', () => {
-            tqdmImage.style.opacity = "1";
-            tqdmVideo.style.opacity = "0";
-          });
-        }
-      }
-
-      // Initialize video hover effects when page loads
-      document.addEventListener('DOMContentLoaded', initializeVideoHover);
-    </script>
   </body>
 </html>
