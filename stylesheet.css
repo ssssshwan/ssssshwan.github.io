@@ -176,3 +176,45 @@
     visibility: visible;
     opacity: 1;
   }
+
+  /* Mobile responsive */
+  @media only screen and (max-width: 768px) {
+    .bio-row td {
+      display: block;
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 2% !important;
+      text-align: center;
+    }
+    .bio-row .profile-photo {
+      order: -1;
+    }
+    .bio-row .profile-photo img {
+      max-width: 150px;
+      margin: 0 auto;
+      display: block;
+    }
+    .bio-row p {
+      text-align: left;
+    }
+    .bio-row p[style*="text-align:center"] {
+      text-align: center !important;
+    }
+    .paper-row td {
+      display: block;
+      width: 100% !important;
+      padding: 10px 20px !important;
+    }
+    .one, .two {
+      width: 100%;
+      height: auto;
+      max-width: 200px;
+      margin: 0 auto;
+    }
+    .paper-row img {
+      max-width: 200px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  }
