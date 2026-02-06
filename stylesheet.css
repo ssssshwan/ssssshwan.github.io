@@ -190,7 +190,7 @@
       order: -1;
     }
     .bio-row .profile-photo img {
-      max-width: 150px;
+      max-width: 100px;
       margin: 0 auto;
       display: block;
     }
