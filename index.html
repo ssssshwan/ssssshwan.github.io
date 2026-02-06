@@ -5,7 +5,12 @@
   
   <meta name="author" content="Sunghwan Kim">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+  <meta name="description" content="Sunghwan Kim (Shawn) - PhD student at UC San Diego, Existential Robotics Laboratory. Research in robot mapping, policy learning, and mobile manipulation.">
+  <meta property="og:title" content="Sunghwan Kim">
+  <meta property="og:description" content="PhD student at UC San Diego. Research in robot mapping, policy learning, and mobile manipulation.">
+  <meta property="og:image" content="images/Sunghwan_circle.png">
+  <meta property="og:type" content="website">
+
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 	<link rel="icon" type="image/png" href="images/ucsd-logo-large.png">
 </head>
@@ -20,10 +25,11 @@
               <p style="text-align:center">
                 <name>Sunghwan Kim (김성환)</name>
               </p>
-              <p> Hi! My name is <span class="tooltip">Sunghwan Kim<span class="tooltiptext">pronounced "Sung-Hwahn" (su as in "sun")</span></span>. I also go by Shawn. I am a PhD student at UC San Diego, working at <a href="https://existentialrobotics.org/">Existential Robotics Laboratory</a>, advised by Prof. <a href="https://natanaso.github.io/">Nikolay Atanasov</a>. I'm also closely working with Prof. <a href="https://www.tianyulun.com/">Yulun Tian</a> at the University of Michigan.
+              <p> Hi! My name is <span class="tooltip">Sunghwan Kim<span class="tooltiptext">pronounced "Sung-Hwahn" (su as in "sun")</span></span>. I also go by Shawn. I am a PhD student at UC San Diego, working at <a href="https://existentialrobotics.org/">Existential Robotics Laboratory</a>, advised by Prof. <a href="https://natanaso.github.io/">Nikolay Atanasov</a>. Previously, I was a research officer at the <a href="https://www.add.re.kr/eps">Agency for Defense Development (ADD)</a>, the South Korean counterpart to the U.S. DARPA. I received my B.S. in Electrical Engineering and Mathematics (double major) at <a href="https://www.kaist.ac.kr/en/">KAIST</a>.
 	      </p>
-	       <p> Previously, I was a research officer at the <a href="https://www.add.re.kr/eps">Agency for Defense Development (ADD)</a>, the South Korean counterpart to the U.S. DARPA. I received my B.S. in Electrical Engineering and Mathematics (double major) at <a href="https://www.kaist.ac.kr/en/">KAIST</a>.
-              </p>
+              <p>
+	          My research goal is to enable mobile robots to perform long-horizon tasks in large-scale environments autonomously. I'm interested in the intersection of robot mapping and policy learning (e.g., RL, VLA). My current focus includes neural scene representations, neural SLAM, and reinforcement learning (e.g., world models).
+	        </p>
               <p style="text-align:center">
                 <a href="mailto:suk063@ucsd.edu">Email</a> &nbsp/&nbsp
                 <a href="https://www.linkedin.com/in/ssshwan/">Linkedin</a> &nbsp/&nbsp
@@ -39,21 +45,29 @@
 	<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
             <td style="padding:20px;width:100%;vertical-align:middle">
-              <heading>Research</heading>
-              <p>
-	          My research goal is to enable mobile robots to perform long-horizon tasks in large-scale environments autonomously. I'm interested in the intersection of robot mapping and policy learning (e.g., RL, VLA). My current focus includes:
-	        </p>
-	        <ul>
-	          <li>Neural scene representations</li>
-	          <li>Neural SLAM</li>
-	          <li>Reinforcement learning (e.g., world models, inverse RL)</li>
-	        </ul>
+              <heading>News</heading>
+              <ul class="news-list">
+                <li><b>[2026.01]</b> Our paper SBP has been accepted to ICRA 2026!</li>
+                <li><b>[2025.10]</b> Attending CoRL 2025. See you in Seoul!</li>
+                <li><b>[2025.06]</b> Attending RSS 2025. See you in LA!</li>
+                <li><b>[2025.06]</b> Our paper SBP has been nominated for Best Paper at the RSS RoboReps Workshop!</li>
+                <li><b>[2025.06]</b> Our paper MISO has been accepted to RSS 2025!</li>
+                <li><b>[2024.08]</b> Started my PhD at UC San Diego!</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody></table>
+	<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+            <td style="padding:20px;width:100%;vertical-align:middle">
+              <heading>Publication</heading>
+	        <p>Papers sorted by recency. Representative papers are highlighted. * indicates equal contribution.</p>
             </td>
           </tr>
         </tbody></table>    
 	      
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-	<tr>
+	<tr style="background-color: #ffffd0;">
               <td style="padding: 0px 20px 0px 20px; width:30%; vertical-align:middle; border: 0px;" onmouseout="sbtp_stop()" onmouseover="sbtp_start()">
                 <div class="one">
                   <div class="two" id="sbtp_video"><video width="100%" height="100%" muted autoplay loop>
@@ -71,7 +85,7 @@
                     document.getElementById('sbtp_image').style.opacity = "1";
                     document.getElementById('sbtp_video').style.opacity = "0";
                   }
-                  miso_stop();
+                  sbtp_stop();
                 </script>
               </td>
               <td width="70%" valign="middle">
