@@ -177,23 +177,3 @@
     opacity: 1;
   }
 
-  /* Mobile responsive */
-  @media only screen and (max-width: 768px) {
-.paper-row td {
-      display: block;
-      width: 100% !important;
-      padding: 10px 20px !important;
-    }
-    .one, .two {
-      width: 100%;
-      height: auto;
-      max-width: 120px;
-      margin: 0 auto;
-    }
-    .paper-row img {
-      max-width: 120px;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-    }
-  }
