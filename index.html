@@ -65,10 +65,26 @@
                 <li class="news-more"><span class="news-date">[Jun 2025]</span> Our paper MISO has been accepted to RSS 2025!</li>
                 <li class="news-more"><span class="news-date">[Aug 2024]</span> Started my PhD at UC San Diego!</li>
               </ul>
-              <a href="#" class="news-show-more" id="news-toggle" aria-expanded="false">Show more ▼</a>
+              <button type="button" class="news-show-more" id="news-toggle" aria-expanded="false">Show more ▼</button>
             </td>
           </tr>
         </tbody></table>
+
+        <script>
+          (function() {
+            var toggle = document.getElementById('news-toggle');
+            if (!toggle) return;
+            var moreItems = document.querySelectorAll('.news-more');
+            toggle.addEventListener('click', function() {
+              var expanded = toggle.getAttribute('aria-expanded') === 'true';
+              for (var i = 0; i < moreItems.length; i++) {
+                moreItems[i].style.display = expanded ? 'none' : 'list-item';
+              }
+              toggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+              toggle.textContent = expanded ? 'Show more ▼' : 'Show less ▲';
+            });
+          })();
+        </script>
 
         <!-- ===== Publication ===== -->
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
@@ -228,20 +244,6 @@
     </tr>
   </table>
 
-  <script>
-    (function() {
-      var toggle = document.getElementById('news-toggle');
-      if (!toggle) return;
-      var moreItems = document.querySelectorAll('.news-more');
-      toggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        var expanded = toggle.getAttribute('aria-expanded') === 'true';
-        moreItems.forEach(function(li) { li.style.display = expanded ? 'none' : 'list-item'; });
-        toggle.setAttribute('aria-expanded', !expanded);
-        toggle.textContent = expanded ? 'Show more ▼' : 'Show less ▲';
-      });
-    })();
-  </script>
 </body>
 
 </html>

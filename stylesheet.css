@@ -247,10 +247,15 @@ span.highlight {
 
 .news-show-more {
   display: inline-block;
+  border: 0;
+  background: none;
+  padding: 0;
   color: #1772d0;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 14px;
   text-decoration: none;
   margin-top: 4px;
+  cursor: pointer;
 }
 
 .news-show-more:hover {
