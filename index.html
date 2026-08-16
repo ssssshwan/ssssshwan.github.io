@@ -17,7 +17,6 @@
   <link rel="icon" type="image/png" href="images/ucsd-logo-large.png">
   <link rel="stylesheet" href="res/css/bootstrap.min.css">
   <link rel="stylesheet" href="stylesheet.css">
-  <script src="scripts/site.js" defer></script>
 </head>
 
 <body>
@@ -36,8 +35,7 @@
             Email: suk063 AT ucsd.edu<br>
             <a href="https://www.linkedin.com/in/ssshwan/">LinkedIn</a> &amp;
             <a href="https://x.com/sssssshwan">Twitter</a> &amp;
-            <a href="https://scholar.google.com/citations?user=rhOJlOUAAAAJ&amp;hl=en">Google Scholar</a> &amp;
-            <a href="https://github.com/ssssshwan/">GitHub</a>
+            <a href="https://scholar.google.com/citations?user=rhOJlOUAAAAJ&amp;hl=en">Google Scholar</a>
           </div>
 
           <div class="small-spacer" aria-hidden="true"></div>
@@ -226,5 +224,151 @@
       Template based on <a href="https://haozhiqi.github.io/">this website</a>
     </p>
   </footer>
+  <script>
+    (function () {
+      'use strict';
+
+      function initializeSite() {
+        var newsItems = Array.prototype.slice.call(
+          document.querySelectorAll('.news-item'),
+        );
+        var newsToggle = document.querySelector('[data-news-toggle]');
+        var papers = Array.prototype.slice.call(
+          document.querySelectorAll('.paper-entry[data-selected]'),
+        );
+        var filterInputs = Array.prototype.slice.call(
+          document.querySelectorAll('input[name="paper-filter"]'),
+        );
+        var filterGroup = document.querySelector('.paper-filter');
+        var videos = Array.prototype.slice.call(
+          document.querySelectorAll('video[data-src]'),
+        );
+        var observerSupported = 'IntersectionObserver' in window;
+
+        function setNewsExpanded(expanded) {
+          newsItems.forEach(function (item, index) {
+            item.hidden = !expanded && index >= 3;
+          });
+          newsToggle.setAttribute('aria-expanded', String(expanded));
+          newsToggle.textContent = expanded ? 'Show less' : 'Show more';
+        }
+
+        function prefersReducedMotion() {
+          var reduceMotion =
+            typeof window.matchMedia === 'function' &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+          return reduceMotion;
+        }
+
+        function loadVideo(video) {
+          if (!video.dataset.src) return;
+
+          video.src = video.dataset.src;
+          video.removeAttribute('data-src');
+          video.load();
+        }
+
+        function playVideo(video) {
+          if (!prefersReducedMotion() && video.paused) {
+            var playAttempt = video.play();
+            if (playAttempt && typeof playAttempt.catch === 'function') {
+              playAttempt.catch(function () {
+                // Autoplay can be blocked by browser policy; controls remain available.
+              });
+            }
+          }
+        }
+
+        function isInHiddenPaper(video) {
+          var paper =
+            typeof video.closest === 'function'
+              ? video.closest('.paper-entry')
+              : null;
+          return Boolean(paper && paper.hidden);
+        }
+
+        function setPaperFilter(filter) {
+          papers.forEach(function (paper) {
+            var shouldHide =
+              filter === 'selected' && paper.dataset.selected !== 'true';
+            var paperVideos =
+              typeof paper.querySelectorAll === 'function'
+                ? Array.prototype.slice.call(paper.querySelectorAll('video'))
+                : [];
+            paper.hidden = shouldHide;
+
+            if (shouldHide) {
+              paperVideos.forEach(function (video) {
+                if (!video.paused) video.pause();
+              });
+            } else if (!observerSupported) {
+              paperVideos.forEach(function (video) {
+                loadVideo(video);
+                playVideo(video);
+              });
+            }
+          });
+        }
+
+        if (newsToggle && newsItems.length > 3) {
+          newsToggle.addEventListener('click', function () {
+            setNewsExpanded(newsToggle.getAttribute('aria-expanded') !== 'true');
+          });
+          setNewsExpanded(false);
+          newsToggle.hidden = false;
+        }
+
+        videos.forEach(function (video) {
+          video.controls = true;
+        });
+
+        filterInputs.forEach(function (input) {
+          input.addEventListener('change', function () {
+            if (input.checked) setPaperFilter(input.value);
+          });
+        });
+
+        var initialFilter = filterInputs.find(function (input) {
+          return input.checked;
+        });
+        setPaperFilter(initialFilter ? initialFilter.value : 'selected');
+        if (filterGroup) filterGroup.hidden = false;
+
+        if (observerSupported) {
+          var observer = new window.IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting && !isInHiddenPaper(entry.target)) {
+                  loadVideo(entry.target);
+                  playVideo(entry.target);
+                } else if (!entry.target.paused) {
+                  entry.target.pause();
+                }
+              });
+            },
+            { threshold: 0.1 },
+          );
+
+          videos.forEach(function (video) {
+            observer.observe(video);
+          });
+        } else {
+          videos.forEach(function (video) {
+            if (!isInHiddenPaper(video)) {
+              loadVideo(video);
+              playVideo(video);
+            }
+          });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeSite);
+      } else {
+        initializeSite();
+      }
+    })();
+  </script>
 </body>
 </html>
