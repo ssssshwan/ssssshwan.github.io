@@ -265,6 +265,13 @@ test('paper filter overrides native button appearance for a clear active state',
   );
 });
 
+test('news toggle overrides native button appearance', () => {
+  assert.match(
+    stylesheet,
+    /\.news-toggle\s*\{[^}]*-webkit-appearance:\s*none;[^}]*appearance:\s*none;/s,
+  );
+});
+
 test('defaults to Selected and switches between two and six papers', () => {
   assert.notEqual(siteScript, '', 'scripts/site.js must exist');
 

@@ -149,6 +149,7 @@ button:focus-visible,
 }
 
 .news-toggle {
+  -webkit-appearance: none;
   appearance: none;
   margin: 0 0 0 1.25rem;
   padding: 0;
