@@ -174,48 +174,64 @@ button:focus-visible,
   color: #d40000;
 }
 
-.papers-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
 .papers-note {
-  margin-bottom: 1rem;
+  margin-bottom: 0.35rem;
 }
 
 .paper-filter {
   display: inline-flex;
-  flex-shrink: 0;
-  gap: 4px;
-  margin-top: 2px;
+  align-items: baseline;
+  gap: 0.45rem;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  border: 0;
 }
 
-.paper-filter-button {
-  -webkit-appearance: none;
-  appearance: none;
-  padding: 4px 9px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  background: #ffffff;
-  color: #374151;
+.paper-filter[hidden] {
+  display: none;
+}
+
+.paper-filter-legend,
+.paper-filter-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.paper-filter-label {
+  margin: 0;
+  color: var(--link-color);
   cursor: pointer;
   font-size: 14px;
-  font-weight: 500;
   line-height: 1.2;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
-.paper-filter-button:hover {
-  border-color: #9ca3af;
-  background: var(--surface-hover);
+.paper-filter-label:hover {
+  color: var(--link-hover-color);
 }
 
-.paper-filter-button.active {
-  border-color: var(--link-color);
-  background: var(--link-color);
-  color: #ffffff;
+.paper-filter-input:checked + .paper-filter-label {
+  color: var(--text-color);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--link-color);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.paper-filter-input:focus-visible + .paper-filter-label {
+  outline: 3px solid #0071bc;
+  outline-offset: 2px;
+}
+
+.paper-filter-separator {
+  color: #9ca3af;
 }
 
 .paper-entry {
@@ -338,15 +354,6 @@ button:focus-visible,
 
   .bio-column p:first-of-type {
     margin-top: 0.75rem;
-  }
-
-  .papers-header {
-    display: block;
-  }
-
-  .paper-filter {
-    margin-top: 0;
-    margin-bottom: 1.25rem;
   }
 
   .paper-media {

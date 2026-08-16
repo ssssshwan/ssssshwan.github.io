@@ -73,38 +73,16 @@ function hasHiddenAttribute(tag) {
   return /\bhidden(?:\s*=|\s|>)/.test(tag);
 }
 
-function createClassList() {
-  const values = new Set();
-  return {
-    add(value) {
-      values.add(value);
-    },
-    remove(value) {
-      values.delete(value);
-    },
-    contains(value) {
-      return values.has(value);
-    },
-  };
-}
-
-function createFilterButton(filter) {
-  const attributes = new Map();
+function createFilterRadio(value, checked = false) {
   const listeners = new Map();
   return {
-    dataset: { filter },
-    classList: createClassList(),
+    value,
+    checked,
     addEventListener(type, listener) {
       listeners.set(type, listener);
     },
-    click() {
-      listeners.get('click')?.();
-    },
-    getAttribute(name) {
-      return attributes.get(name);
-    },
-    setAttribute(name, value) {
-      attributes.set(name, String(value));
+    change() {
+      listeners.get('change')?.({ target: this });
     },
   };
 }
@@ -219,7 +197,7 @@ test('links UC San Diego and orders biography and Research content', () => {
   const researchHeading = researchSection.search(/<h2\b(?=[^>]*\bid="research-heading")[^>]*>Research<\/h2>/);
   const statementMatch = researchSection.match(/<p\b(?=[^>]*\bclass="[^"]*\bresearch-statement\b)[^>]*>([\s\S]*?)<\/p>/);
   const noteStart = researchSection.search(/<p\b(?=[^>]*\bclass="[^"]*\bpapers-note\b)[^>]*>/);
-  const filterStart = researchSection.search(/<div\b(?=[^>]*\bclass="[^"]*\bpaper-filter\b)[^>]*>/);
+  const filterStart = researchSection.search(/<fieldset\b(?=[^>]*\bclass="[^"]*\bpaper-filter\b)[^>]*>/);
   const papersListStart = researchSection.search(/<div\b(?=[^>]*\bclass="[^"]*\bpapers-list\b)[^>]*>/);
   assert.ok(researchHeading >= 0);
   assert.ok(statementMatch);
@@ -341,26 +319,59 @@ test('uses plain slash-separated paper links without icon dependencies', () => {
   });
 });
 
-test('declares an accessible Selected and All paper filter without hiding fallback content', () => {
-  assert.match(indexHtml, /role="group"[^>]*aria-label="Paper filter"/);
-  assert.match(indexHtml, /class="paper-filter"[^>]*\shidden(?:\s|>)/);
-  assert.match(indexHtml, /data-filter="selected"[^>]*aria-pressed="true"/);
-  assert.match(indexHtml, /data-filter="all"[^>]*aria-pressed="false"/);
+test('declares a left-aligned native Selected and All radio filter', () => {
+  const researchSection = extractSection(indexHtml, 'papers');
+  const noteStart = researchSection.indexOf('class="papers-note"');
+  const filterStart = researchSection.indexOf('class="paper-filter"');
+  const papersListStart = researchSection.indexOf('class="papers-list"');
+
+  assert.ok(noteStart < filterStart);
+  assert.ok(filterStart < papersListStart);
+  assert.match(
+    researchSection,
+    /<fieldset\b(?=[^>]*\bclass="paper-filter")(?=[^>]*\bhidden(?:\s|>))[^>]*>/,
+  );
+  assert.match(
+    researchSection,
+    /<legend class="paper-filter-legend">Paper filter<\/legend>/,
+  );
+  assert.match(
+    researchSection,
+    /type="radio"[^>]*name="paper-filter"[^>]*value="selected"[^>]*checked/,
+  );
+  assert.match(
+    researchSection,
+    /type="radio"[^>]*name="paper-filter"[^>]*value="all"/,
+  );
+  assert.match(
+    researchSection,
+    /<label class="paper-filter-label" for="paper-filter-selected">Selected<\/label>[\s\S]*?<span class="paper-filter-separator" aria-hidden="true">\/<\/span>[\s\S]*?<label class="paper-filter-label" for="paper-filter-all">All<\/label>/,
+  );
+  assert.doesNotMatch(researchSection, /paper-filter-button|aria-pressed/);
   assert.doesNotMatch(
-    indexHtml,
+    researchSection,
     /class="[^"]*paper-entry[^"]*"[^>]*\shidden(?:\s|=|>)/,
   );
 });
 
-test('paper filter overrides native button appearance for a clear active state', () => {
+test('styles the radio labels as text with selected and focus states', () => {
   assert.match(
     stylesheet,
-    /\.paper-filter-button\s*\{[^}]*appearance:\s*none;/s,
+    /\.paper-filter\s*\{[^}]*display:\s*inline-flex;[^}]*margin:\s*0 0 1\.25rem;/s,
   );
   assert.match(
     stylesheet,
-    /\.paper-filter-button\.active\s*\{[^}]*background:\s*var\(--link-color\);/s,
+    /\.paper-filter\[hidden\]\s*\{[^}]*display:\s*none;/s,
   );
+  assert.match(
+    stylesheet,
+    /\.paper-filter-input:checked \+ \.paper-filter-label\s*\{(?=[^}]*font-weight:\s*600;)(?=[^}]*text-decoration:\s*underline;)[^}]*\}/s,
+  );
+  assert.match(
+    stylesheet,
+    /\.paper-filter-input:focus-visible \+ \.paper-filter-label\s*\{[^}]*outline:\s*3px solid #0071bc;/s,
+  );
+  assert.doesNotMatch(stylesheet, /\.paper-filter-button/);
 });
 
 test('news toggle overrides native button appearance', () => {
@@ -408,8 +419,8 @@ test('defaults to Selected and switches between two and six papers', () => {
     createPaper(false),
     createPaper(false),
   ];
-  const selectedButton = createFilterButton('selected');
-  const allButton = createFilterButton('all');
+  const selectedRadio = createFilterRadio('selected', true);
+  const allRadio = createFilterRadio('all');
   const filterGroup = { hidden: true };
 
   const document = {
@@ -418,7 +429,9 @@ test('defaults to Selected and switches between two and six papers', () => {
     },
     querySelectorAll(selector) {
       if (selector === '.paper-entry[data-selected]') return papers;
-      if (selector === '[data-filter]') return [selectedButton, allButton];
+      if (selector === 'input[name="paper-filter"]') {
+        return [selectedRadio, allRadio];
+      }
       if (selector === 'video[data-src]') return [];
       return [];
     },
@@ -431,16 +444,18 @@ test('defaults to Selected and switches between two and six papers', () => {
 
   assert.equal(papers.filter((paper) => !paper.hidden).length, 2);
   assert.equal(filterGroup.hidden, false);
-  assert.equal(selectedButton.getAttribute('aria-pressed'), 'true');
-  assert.equal(allButton.getAttribute('aria-pressed'), 'false');
+  assert.equal(selectedRadio.checked, true);
+  assert.equal(allRadio.checked, false);
 
-  allButton.click();
+  selectedRadio.checked = false;
+  allRadio.checked = true;
+  allRadio.change();
   assert.equal(papers.filter((paper) => !paper.hidden).length, 6);
-  assert.equal(selectedButton.getAttribute('aria-pressed'), 'false');
-  assert.equal(allButton.getAttribute('aria-pressed'), 'true');
 
   hiddenPaperVideo.paused = false;
-  selectedButton.click();
+  allRadio.checked = false;
+  selectedRadio.checked = true;
+  selectedRadio.change();
   assert.equal(papers.filter((paper) => !paper.hidden).length, 2);
   assert.equal(hiddenPaperVideo.pauseCalls, 1);
 });
@@ -451,7 +466,12 @@ test('news defaults to three entries and toggles all eight without persistence',
     querySelectorAll(selector) {
       if (selector === '.news-item') return newsItems;
       if (selector === '.paper-entry[data-selected]') return [];
-      if (selector === '[data-filter]' || selector === 'video[data-src]') return [];
+      if (
+        selector === 'input[name="paper-filter"]' ||
+        selector === 'video[data-src]'
+      ) {
+        return [];
+      }
       return [];
     },
     querySelector(selector) {
@@ -547,14 +567,16 @@ test('fallback media loading never plays videos inside hidden papers', () => {
     createPaper(true, [selectedVideo]),
     createPaper(false, [hiddenVideo]),
   ];
-  const selectedButton = createFilterButton('selected');
-  const allButton = createFilterButton('all');
+  const selectedRadio = createFilterRadio('selected', true);
+  const allRadio = createFilterRadio('all');
 
   const document = {
     readyState: 'complete',
     querySelectorAll(selector) {
       if (selector === '.paper-entry[data-selected]') return papers;
-      if (selector === '[data-filter]') return [selectedButton, allButton];
+      if (selector === 'input[name="paper-filter"]') {
+        return [selectedRadio, allRadio];
+      }
       if (selector === 'video[data-src]') return [selectedVideo, hiddenVideo];
       return [];
     },
@@ -570,7 +592,9 @@ test('fallback media loading never plays videos inside hidden papers', () => {
   assert.equal(hiddenVideo.loadCalls, 0);
   assert.equal(hiddenVideo.playCalls, 0);
 
-  allButton.click();
+  selectedRadio.checked = false;
+  allRadio.checked = true;
+  allRadio.change();
   assert.equal(hiddenVideo.loadCalls, 1);
   assert.equal(hiddenVideo.playCalls, 1);
 });

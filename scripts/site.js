@@ -9,8 +9,8 @@
     var papers = Array.prototype.slice.call(
       document.querySelectorAll('.paper-entry[data-selected]'),
     );
-    var filterButtons = Array.prototype.slice.call(
-      document.querySelectorAll('[data-filter]'),
+    var filterInputs = Array.prototype.slice.call(
+      document.querySelectorAll('input[name="paper-filter"]'),
     );
     var filterGroup = document.querySelector('.paper-filter');
     var videos = Array.prototype.slice.call(
@@ -80,15 +80,6 @@
         }
       });
 
-      filterButtons.forEach(function (button) {
-        var isActive = button.dataset.filter === filter;
-        button.setAttribute('aria-pressed', String(isActive));
-        if (isActive) {
-          button.classList.add('active');
-        } else {
-          button.classList.remove('active');
-        }
-      });
     }
 
     if (newsToggle && newsItems.length > 3) {
@@ -103,13 +94,16 @@
       video.controls = true;
     });
 
-    filterButtons.forEach(function (button) {
-      button.addEventListener('click', function () {
-        setPaperFilter(button.dataset.filter);
+    filterInputs.forEach(function (input) {
+      input.addEventListener('change', function () {
+        if (input.checked) setPaperFilter(input.value);
       });
     });
 
-    setPaperFilter('selected');
+    var initialFilter = filterInputs.find(function (input) {
+      return input.checked;
+    });
+    setPaperFilter(initialFilter ? initialFilter.value : 'selected');
     if (filterGroup) filterGroup.hidden = false;
 
     if (observerSupported) {
