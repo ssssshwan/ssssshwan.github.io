@@ -159,6 +159,8 @@ test('uses the reference template header and collapsible news structure', () => 
   assert.match(indexHtml, /class="[^"]*col-md-3[^"]*"[\s\S]*Sunghwan\.jpeg/);
   assert.match(indexHtml, /class="[^"]*col-md-9[^"]*"/);
   const newsSection = extractSection(indexHtml, 'news');
+  assert.match(newsSection, /<h2 class="section-title" id="news-heading">News<\/h2>/);
+  assert.doesNotMatch(newsSection, /Recent News/);
   const newsListMatch = newsSection.match(
     /<ul\b(?=[^>]*\bclass="[^"]*\bnews-list\b)[^>]*>([\s\S]*?)<\/ul>/,
   );
