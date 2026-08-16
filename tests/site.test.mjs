@@ -74,6 +74,31 @@ function createFilterButton(filter) {
   };
 }
 
+function createNewsItem() {
+  return { hidden: false };
+}
+
+function createNewsButton() {
+  const attributes = new Map();
+  const listeners = new Map();
+  return {
+    hidden: true,
+    textContent: 'Show more',
+    addEventListener(type, listener) {
+      listeners.set(type, listener);
+    },
+    click() {
+      listeners.get('click')?.();
+    },
+    getAttribute(name) {
+      return attributes.get(name);
+    },
+    setAttribute(name, value) {
+      attributes.set(name, String(value));
+    },
+  };
+}
+
 function createVideo(source = 'images/preview.mp4') {
   return {
     controls: false,
@@ -287,6 +312,54 @@ test('defaults to Selected and switches between two and six papers', () => {
   selectedButton.click();
   assert.equal(papers.filter((paper) => !paper.hidden).length, 2);
   assert.equal(hiddenPaperVideo.pauseCalls, 1);
+});
+
+test('news defaults to three entries and toggles all eight without persistence', () => {
+  const createNewsDocument = (newsItems, newsButton) => ({
+    readyState: 'complete',
+    querySelectorAll(selector) {
+      if (selector === '.news-item') return newsItems;
+      if (selector === '.paper-entry[data-selected]') return [];
+      if (selector === '[data-filter]' || selector === 'video[data-src]') return [];
+      return [];
+    },
+    querySelector(selector) {
+      return selector === '[data-news-toggle]' ? newsButton : null;
+    },
+  });
+
+  const newsItems = Array.from({ length: 8 }, createNewsItem);
+  const newsButton = createNewsButton();
+  vm.runInNewContext(siteScript, {
+    document: createNewsDocument(newsItems, newsButton),
+    window: {},
+  });
+
+  assert.equal(newsItems.filter((item) => !item.hidden).length, 3);
+  assert.equal(newsButton.hidden, false);
+  assert.equal(newsButton.textContent, 'Show more');
+  assert.equal(newsButton.getAttribute('aria-expanded'), 'false');
+
+  newsButton.click();
+  assert.equal(newsItems.filter((item) => !item.hidden).length, 8);
+  assert.equal(newsButton.textContent, 'Show less');
+  assert.equal(newsButton.getAttribute('aria-expanded'), 'true');
+
+  newsButton.click();
+  assert.equal(newsItems.filter((item) => !item.hidden).length, 3);
+  assert.equal(newsButton.textContent, 'Show more');
+  assert.equal(newsButton.getAttribute('aria-expanded'), 'false');
+
+  const freshNewsItems = Array.from({ length: 8 }, createNewsItem);
+  const freshNewsButton = createNewsButton();
+  vm.runInNewContext(siteScript, {
+    document: createNewsDocument(freshNewsItems, freshNewsButton),
+    window: {},
+  });
+  assert.equal(freshNewsItems.filter((item) => !item.hidden).length, 3);
+  assert.equal(freshNewsButton.hidden, false);
+  assert.equal(freshNewsButton.textContent, 'Show more');
+  assert.equal(freshNewsButton.getAttribute('aria-expanded'), 'false');
 });
 
 test('lazy videos load on intersection and pause outside the viewport', () => {
