@@ -175,14 +175,14 @@ button:focus-visible,
 }
 
 .papers-note {
-  margin-bottom: 0.35rem;
+  margin-bottom: 1.25rem;
 }
 
 .paper-filter {
   display: inline-flex;
   align-items: baseline;
   gap: 0.45rem;
-  margin: 0 0 1.25rem;
+  margin: 0 0 0.35rem;
   padding: 0;
   border: 0;
 }
