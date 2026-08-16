@@ -317,9 +317,10 @@ test('uses plain slash-separated paper links without icon dependencies', () => {
     assert.match(tag, /target="_blank"/);
     assert.match(tag, /rel="noopener noreferrer"/);
   });
+  assert.match(stylesheet, /\.paper-links\s*\{[^}]*font-size:\s*1rem;/s);
 });
 
-test('declares a left-aligned native Selected and All radio filter', () => {
+test('declares a left-aligned native Selected and ALL radio filter', () => {
   const researchSection = extractSection(indexHtml, 'papers');
   const noteStart = researchSection.indexOf('class="papers-note"');
   const filterStart = researchSection.indexOf('class="paper-filter"');
@@ -345,7 +346,7 @@ test('declares a left-aligned native Selected and All radio filter', () => {
   );
   assert.match(
     researchSection,
-    /<label class="paper-filter-label" for="paper-filter-selected">Selected<\/label>[\s\S]*?<span class="paper-filter-separator" aria-hidden="true">\/<\/span>[\s\S]*?<label class="paper-filter-label" for="paper-filter-all">All<\/label>/,
+    /<label class="paper-filter-label" for="paper-filter-selected">Selected<\/label>[\s\S]*?<span class="paper-filter-separator" aria-hidden="true">\/<\/span>[\s\S]*?<label class="paper-filter-label" for="paper-filter-all">ALL<\/label>/,
   );
   assert.doesNotMatch(researchSection, /paper-filter-button|aria-pressed/);
   assert.doesNotMatch(
@@ -370,6 +371,10 @@ test('styles the radio labels as text with selected and focus states', () => {
   assert.match(
     stylesheet,
     /\.paper-filter-input:focus-visible \+ \.paper-filter-label\s*\{[^}]*outline:\s*3px solid #0071bc;/s,
+  );
+  assert.match(
+    stylesheet,
+    /\.paper-filter-label\s*\{[^}]*font-size:\s*1rem;/s,
   );
   assert.doesNotMatch(stylesheet, /\.paper-filter-button/);
 });

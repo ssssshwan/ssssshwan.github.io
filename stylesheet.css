@@ -208,7 +208,7 @@ button:focus-visible,
   margin: 0;
   color: var(--link-color);
   cursor: pointer;
-  font-size: 14px;
+  font-size: 1rem;
   line-height: 1.2;
 }
 
@@ -298,7 +298,7 @@ button:focus-visible,
 .paper-links {
   margin-top: 4px;
   margin-bottom: 4px;
-  font-size: 14px;
+  font-size: 1rem;
   line-height: 1.4;
 }
 

@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Replace the Research section's boxed controls with a left-aligned `Selected / All` text selector and render publication resources as plain slash-separated links.
+**Goal:** Replace the Research section's boxed controls with a left-aligned `Selected / ALL` text selector and render publication resources as plain slash-separated links at the surrounding body-text size.
 
 **Architecture:** Keep the existing static HTML, CSS, and small progressive-enhancement script. Use native radio inputs for the mutually exclusive paper views, let CSS render their labels as lightweight text, and keep the current `data-selected` filtering and video lifecycle behavior. Keep paper-link separators explicit in HTML so missing links never produce stray slashes.
 
@@ -60,6 +60,7 @@ test('uses plain slash-separated paper links without icon dependencies', () => {
     assert.match(tag, /target="_blank"/);
     assert.match(tag, /rel="noopener noreferrer"/);
   });
+  assert.match(stylesheet, /\.paper-links\s*\{[^}]*font-size:\s*1rem;/s);
 });
 ```
 
@@ -129,7 +130,7 @@ Replace the complete `.link-badges` rule group in `stylesheet.css` with:
 .paper-links {
   margin-top: 4px;
   margin-bottom: 4px;
-  font-size: 14px;
+  font-size: 1rem;
   line-height: 1.4;
 }
 
@@ -189,7 +190,7 @@ function createFilterRadio(value, checked = false) {
 Replace the existing `declares an accessible Selected and All paper filter without hiding fallback content` and `paper filter overrides native button appearance for a clear active state` tests with:
 
 ```js
-test('declares a left-aligned native Selected and All radio filter', () => {
+test('declares a left-aligned native Selected and ALL radio filter', () => {
   const researchSection = extractSection(indexHtml, 'papers');
   const noteStart = researchSection.indexOf('class="papers-note"');
   const filterStart = researchSection.indexOf('class="paper-filter"');
@@ -215,7 +216,7 @@ test('declares a left-aligned native Selected and All radio filter', () => {
   );
   assert.match(
     researchSection,
-    /<label class="paper-filter-label" for="paper-filter-selected">Selected<\/label>[\s\S]*?<span class="paper-filter-separator" aria-hidden="true">\/<\/span>[\s\S]*?<label class="paper-filter-label" for="paper-filter-all">All<\/label>/,
+    /<label class="paper-filter-label" for="paper-filter-selected">Selected<\/label>[\s\S]*?<span class="paper-filter-separator" aria-hidden="true">\/<\/span>[\s\S]*?<label class="paper-filter-label" for="paper-filter-all">ALL<\/label>/,
   );
   assert.doesNotMatch(researchSection, /paper-filter-button|aria-pressed/);
   assert.doesNotMatch(
@@ -240,6 +241,10 @@ test('styles the radio labels as text with selected and focus states', () => {
   assert.match(
     stylesheet,
     /\.paper-filter-input:focus-visible \+ \.paper-filter-label\s*\{[^}]*outline:\s*3px solid #0071bc;/s,
+  );
+  assert.match(
+    stylesheet,
+    /\.paper-filter-label\s*\{[^}]*font-size:\s*1rem;/s,
   );
   assert.doesNotMatch(stylesheet, /\.paper-filter-button/);
 });
@@ -359,7 +364,7 @@ Replace `.papers-header` in `index.html` with:
         <label class="paper-filter-label" for="paper-filter-selected">Selected</label>
         <span class="paper-filter-separator" aria-hidden="true">/</span>
         <input class="paper-filter-input" type="radio" name="paper-filter" id="paper-filter-all" value="all">
-        <label class="paper-filter-label" for="paper-filter-all">All</label>
+        <label class="paper-filter-label" for="paper-filter-all">ALL</label>
       </fieldset>
 ```
 
@@ -402,7 +407,7 @@ Replace `.papers-header`, `.papers-note`, `.paper-filter`, and all `.paper-filte
   margin: 0;
   color: var(--link-color);
   cursor: pointer;
-  font-size: 14px;
+  font-size: 1rem;
   line-height: 1.2;
 }
 
@@ -499,7 +504,7 @@ Expected: every test passes and `git diff --check` prints no errors.
 
 Serve the repository locally and open `index.html` at approximately 1440 pixels wide. Confirm:
 
-- `Selected / All` is below the contribution note and aligned to the Research section's left edge.
+- `Selected / ALL` is below the contribution note and aligned to the Research section's left edge.
 - `Selected` starts underlined and only the two selected papers appear.
 - Choosing `All` reveals all six papers without moving the selector to the right.
 - The first four entries read `Paper / Project Page / Code`, the fifth reads `Paper / Code`, and the sixth reads `Paper`.

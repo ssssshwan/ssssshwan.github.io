@@ -7,7 +7,8 @@ Simplify the Research section by replacing the right-aligned paper-filter button
 ## Paper Filter
 
 - Place the filter below `* indicates equal contribution.` and immediately above the paper list, aligned with the left edge of the section.
-- Show the two options as `Selected / All` with no visible container, border, background, or icon.
+- Show the two options as `Selected / ALL` with no visible container, border, background, or icon.
+- Match the selector and paper-link text to the surrounding body size with `1rem` typography.
 - Keep `Selected` as the initial value.
 - Indicate the active value with darker, slightly heavier text and a blue underline. Keep the inactive value in the site's normal link color.
 - Keep a clearly visible keyboard focus treatment distinct from the selected treatment.
