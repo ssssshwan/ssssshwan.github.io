@@ -1,6 +1,6 @@
 :root {
   --link-color: #0071bc;
-  --link-hover-color: #208799;
+  --link-hover-color: #176f7d;
   --text-color: #212529;
   --muted-text: #666666;
   --border-color: #d1d5db;
@@ -25,7 +25,7 @@ a:hover {
 a:focus-visible,
 button:focus-visible,
 .pronunciation:focus-visible {
-  outline: 3px solid rgba(0, 113, 188, 0.35);
+  outline: 3px solid #0071bc;
   outline-offset: 2px;
 }
 
@@ -65,7 +65,7 @@ button:focus-visible,
 }
 
 .korean-name {
-  color: #888888;
+  color: #6b6b6b;
   font-size: 0.65em;
   font-weight: 300;
   letter-spacing: 0.05em;
@@ -171,7 +171,7 @@ button:focus-visible,
 }
 
 .award {
-  color: #ff0000;
+  color: #d40000;
 }
 
 .papers-header {
@@ -265,6 +265,9 @@ button:focus-visible,
 .authors a:link,
 .authors a:visited {
   color: var(--muted-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
 .authors strong {

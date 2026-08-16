@@ -40,6 +40,35 @@ function normalizeText(source) {
     .trim();
 }
 
+function colorChannelsOnWhite(value) {
+  const hex = value.match(/^#([0-9a-f]{6})$/i);
+  if (hex) {
+    return [0, 2, 4].map((offset) =>
+      Number.parseInt(hex[1].slice(offset, offset + 2), 16),
+    );
+  }
+
+  const rgba = value.match(
+    /^rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*([\d.]+)\s*\)$/i,
+  );
+  assert.ok(rgba, `unsupported CSS color: ${value}`);
+  const alpha = Number(rgba[4]);
+  return rgba.slice(1, 4).map((channel) =>
+    Number(channel) * alpha + 255 * (1 - alpha),
+  );
+}
+
+function contrastAgainstWhite(value) {
+  const linear = colorChannelsOnWhite(value).map((channel) => {
+    const normalized = channel / 255;
+    return normalized <= 0.04045
+      ? normalized / 12.92
+      : ((normalized + 0.055) / 1.055) ** 2.4;
+  });
+  const luminance = 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
+  return 1.05 / (luminance + 0.05);
+}
+
 function hasHiddenAttribute(tag) {
   return /\bhidden(?:\s*=|\s|>)/.test(tag);
 }
@@ -306,6 +335,24 @@ test('slightly enlarges the Korean name and keeps template credit secondary', ()
   assert.match(
     stylesheet,
     /\.template-credit\s*\{(?=[^}]*font-size:\s*0\.75rem;)(?=[^}]*color:\s*var\(--muted-text\);)[^}]*\}/s,
+  );
+});
+
+test('keeps focus, colored text, and author links visually distinguishable', () => {
+  const focusColor = stylesheet.match(/outline:\s*3px solid ([^;]+);/)[1];
+  const hoverColor = stylesheet.match(/--link-hover-color:\s*([^;]+);/)[1];
+  const koreanRule = stylesheet.match(/\.korean-name\s*\{([^}]*)\}/s)[1];
+  const koreanColor = koreanRule.match(/color:\s*([^;]+);/)[1];
+  const awardRule = stylesheet.match(/\.award\s*\{([^}]*)\}/s)[1];
+  const awardColor = awardRule.match(/color:\s*([^;]+);/)[1];
+
+  assert.ok(contrastAgainstWhite(focusColor) >= 3, 'focus outline contrast');
+  assert.ok(contrastAgainstWhite(hoverColor) >= 4.5, 'hover text contrast');
+  assert.ok(contrastAgainstWhite(koreanColor) >= 4.5, 'Korean name contrast');
+  assert.ok(contrastAgainstWhite(awardColor) >= 4.5, 'award text contrast');
+  assert.match(
+    stylesheet,
+    /\.authors a:link,[\s\S]*?\.authors a:visited\s*\{[^}]*text-decoration:\s*underline;/,
   );
 });
 
