@@ -1,280 +1,234 @@
-<!DOCTYPE HTML>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Sunghwan Kim</title>
 
   <meta name="author" content="Sunghwan Kim">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Sunghwan Kim (Shawn) - Ph.D. student in the Department of Electrical and Computer Engineering at UC San Diego, Existential Robotics Laboratory. Research in robot mapping, policy learning, and mobile manipulation.">
   <meta property="og:title" content="Sunghwan Kim">
   <meta property="og:description" content="Ph.D. student in the Department of Electrical and Computer Engineering at UC San Diego. Research in robot mapping, policy learning, and mobile manipulation.">
   <meta property="og:image" content="images/Sunghwan_circle.png">
   <meta property="og:type" content="website">
 
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="icon" type="image/png" href="images/ucsd-logo-large.png">
+  <link rel="stylesheet" href="res/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="stylesheet.css">
+  <script src="scripts/site.js" defer></script>
 </head>
 
 <body>
-  <table style="width:100%;max-width:1000px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr style="padding:0px">
-      <td style="padding:0px">
+  <header class="site-header">
+    <div class="container">
+      <div class="header-spacer" aria-hidden="true"></div>
+      <div class="row align-items-center">
+        <div class="col-md-3 profile-column">
+          <img class="img-fluid profile-photo" src="images/Sunghwan.jpeg" alt="Sunghwan Kim">
+        </div>
+        <div class="col-md-9 bio-column">
+          <h1 class="site-name">
+            Sunghwan Kim <span class="korean-name">(김성환)</span>
+          </h1>
+          <div class="contact-lines">
+            Email: <a href="mailto:suk063@ucsd.edu">suk063 AT ucsd.edu</a><br>
+            <a href="https://www.linkedin.com/in/ssshwan/">LinkedIn</a> &amp;
+            <a href="https://x.com/sssssshwan">Twitter</a> &amp;
+            <a href="https://scholar.google.com/citations?user=rhOJlOUAAAAJ&amp;hl=en">Google Scholar</a> &amp;
+            <a href="https://github.com/ssssshwan/">GitHub</a>
+          </div>
 
-        <!-- ===== About Card ===== -->
-        <section class="about-card">
-          <div class="about-card-inner">
-            <h1 class="about-name" style="font-size:2.7em;">Sunghwan Kim <span style="font-size:0.5em; font-weight:300; color:#888; letter-spacing:0.05em;">(김성환)</span></h1>
-            <div class="about-photo">
-              <img src="images/Sunghwan_circle.png" alt="Sunghwan Kim" class="about-photo-img">
-            </div>
-            <div class="about-text">
-              <p>
-                Hi! My name is <span class="tooltip">Sunghwan Kim<span class="tooltiptext">pronounced "Sung-Hwahn" (su as in "sun")</span></span>. I also go by Shawn. I am a Ph.D. student in the Department of Electrical and Computer Engineering at UC San Diego, where I work with the <a href="https://existentialrobotics.org/">Existential Robotics Laboratory</a>. I'm fortunate to be advised by Prof. <a href="https://natanaso.github.io/">Nikolay Atanasov</a>. I'm also closely working with Prof. <a href="https://www.tianyulun.com/">Yulun Tian</a> at University of Michigan. Previously, I was a research officer at the <a href="https://www.add.re.kr/eps">Agency for Defense Development (ADD)</a>, the South Korean counterpart to the U.S. DARPA. I received my B.S. in Electrical Engineering and Mathematics (double major) at <a href="https://www.kaist.ac.kr/en/">KAIST</a>.
-              </p>
-              <p>
-                My research goal is to enable mobile robots to autonomously perform complex, long-horizon tasks that require both navigation and physical interaction in large-scale, unstructured environments. To this end, I aim to develop structured representations of the physical world and leverage them for task execution and planning. In particular, I am currently exploring how 3D maps can support long-horizon reasoning in visuomotor policies. My research is centered on neural scene representations, simultaneous localization and mapping (SLAM), and robot policy learning (e.g., VLA and model-based RL).
-              </p>
-              <p class="about-links">
-                <a href="mailto:suk063@ucsd.edu">Email</a> /
-                <a href="https://www.linkedin.com/in/ssshwan/">Linkedin</a> /
-                <a href="https://x.com/sssssshwan">Twitter</a> /
-                <a href="https://scholar.google.com/citations?user=rhOJlOUAAAAJ&hl=en">Google Scholar</a> /
-                <a href="https://github.com/ssssshwan/">Github</a>
-              </p>
+          <div class="small-spacer" aria-hidden="true"></div>
+          <p>
+            Hi! My name is
+            <span class="pronunciation" tabindex="0">Sunghwan Kim<span class="pronunciation-text" role="tooltip">pronounced "Sung-Hwahn" (su as in "sun")</span></span>.
+            I also go by Shawn. I am a Ph.D. student in the Department of Electrical and Computer Engineering at <a href="https://ucsd.edu/">UC San Diego</a>, where I work with the <a href="https://existentialrobotics.org/">Existential Robotics Laboratory</a>. I'm fortunate to be advised by Prof. <a href="https://natanaso.github.io/">Nikolay Atanasov</a>. I'm also closely working with Prof. <a href="https://www.tianyulun.com/">Yulun Tian</a> at University of Michigan.
+          </p>
+          <p class="previous-experience">
+            Previously, I was a research officer at the <a href="https://www.add.re.kr/eps">Agency for Defense Development (ADD)</a>, the South Korean counterpart to the U.S. DARPA. I received my B.S. in Electrical Engineering and Mathematics (double major) at <a href="https://www.kaist.ac.kr/en/">KAIST</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container page-section" id="news" aria-labelledby="news-heading">
+      <h2 class="section-title" id="news-heading">Recent News</h2>
+      <ul class="news-list">
+        <li class="news-item"><span class="news-date">[Jun 2026]</span> Our paper on <a href="https://natanaso.github.io/ref/Kim_4DLatentMap_ICRA26.pdf">4D Latent Mapping for Mobile Manipulation Policy Learning</a> received the <span class="award">Best Paper Award</span> at the <a href="https://xingxingzuo.github.io/MM-SpatialAI/">ICRA 2026 Workshop on Multi-Modal Spatial AI for Robust Navigation and Open-World Understanding</a>.</li>
+        <li class="news-item"><span class="news-date">[Jun 2026]</span> Attending ICRA 2026. See you in Vienna!</li>
+        <li class="news-item"><span class="news-date">[Jan 2026]</span> Our paper <a href="https://existentialrobotics.org/sbp_page/">Seeing the Bigger Picture</a> has been accepted to ICRA 2026!</li>
+        <li class="news-item"><span class="news-date">[Oct 2025]</span> Attending CoRL 2025. See you in Seoul!</li>
+        <li class="news-item"><span class="news-date">[Jun 2025]</span> Attending RSS 2025. See you in LA!</li>
+        <li class="news-item"><span class="news-date">[Jun 2025]</span> Our paper <a href="https://existentialrobotics.org/sbp_page/">Seeing the Bigger Picture</a> received the <span class="award">Best Paper Nomination</span> at the <a href="https://rss25-roboreps.github.io/index.html">RSS 2025 Workshop on Learned Robot Representations</a>!</li>
+        <li class="news-item"><span class="news-date">[Jun 2025]</span> Our paper MISO has been accepted to RSS 2025!</li>
+        <li class="news-item"><span class="news-date">[Aug 2024]</span> Started my PhD at UC San Diego!</li>
+      </ul>
+      <button class="news-toggle" type="button" data-news-toggle aria-expanded="false" hidden>Show more</button>
+    </section>
+
+    <section class="container page-section papers-section" id="papers" aria-labelledby="research-heading">
+      <h2 class="section-title" id="research-heading">Research</h2>
+      <p class="research-statement">
+        My research goal is to enable mobile robots to autonomously perform complex, long-horizon tasks that require both navigation and physical interaction in large-scale, unstructured environments. To this end, I aim to develop structured representations of the physical world and leverage them for task execution and planning. In particular, I am currently exploring how 3D maps can support long-horizon reasoning in visuomotor policies. My research is centered on neural scene representations, simultaneous localization and mapping (SLAM), and robot policy learning (e.g., VLA and model-based RL).
+      </p>
+      <div class="papers-header">
+        <div>
+          <p class="papers-note">Papers sorted by recency. * indicates equal contribution.</p>
+        </div>
+        <div class="paper-filter" role="group" aria-label="Paper filter" hidden>
+          <button class="paper-filter-button active" type="button" data-filter="selected" aria-pressed="true">Selected</button>
+          <button class="paper-filter-button" type="button" data-filter="all" aria-pressed="false">All</button>
+        </div>
+      </div>
+
+      <div class="papers-list">
+        <article class="row align-items-center paper-entry" data-selected="true">
+          <div class="col-md-3">
+            <div class="paper-media">
+              <video data-src="images/serf.mp4" poster="images/serf-poster.jpg" muted loop playsinline preload="none" aria-label="SERF project preview"></video>
             </div>
           </div>
-        </section>
+          <div class="col-md-9 paper-details">
+            <h3 class="paper-title">SERF: Spatiotemporal Environment and Robot Feature Map for Long-Horizon Mobile Manipulation</h3>
+            <div class="authors">
+              <strong>Sunghwan Kim</strong>*,
+              <a href="https://byeonghyunpak.github.io/">Byeonghyun Pak</a>*,
+              <a href="https://kehanlong.github.io/">Kehan Long</a>,
+              <a href="https://www.tianyulun.com/">Yulun Tian</a>,
+              <a href="https://natanaso.github.io/">Nikolay Atanasov</a>
+            </div>
+            <div class="paper-venue">
+              <em><a href="https://xingxingzuo.github.io/MM-SpatialAI/">IEEE ICRA 2026 Workshop on Multi-Modal Spatial AI</a> (<span class="award">Best Paper Award</span>)</em>
+            </div>
+            <div class="link-badges">
+              <a href="https://arxiv.org/abs/2606.12956" class="badge" target="_blank" rel="noopener noreferrer"><i class="fas fa-book" aria-hidden="true"></i>Paper</a>
+              <a href="https://existentialrobotics.org/serf/" class="badge" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe" aria-hidden="true"></i>Project Page</a>
+              <a href="https://github.com/ExistentialRobotics/SERF-VLA" class="badge" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i>Code</a>
+            </div>
+          </div>
+        </article>
 
-        <!-- ===== News ===== -->
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:16px 16px 0 16px;width:100%;vertical-align:middle">
-              <h2>News</h2>
-            </td>
-          </tr>
-        </tbody></table>
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:16px;width:100%;vertical-align:top" class="news-content-cell">
-              <ul class="news-list">
-                <li><span class="news-date">[Jun 2026]</span> Our paper on <a href="https://natanaso.github.io/ref/Kim_4DLatentMap_ICRA26.pdf">4D Latent Mapping for Mobile Manipulation Policy Learning</a> received the <span style="color:#ff0000;">Best Paper Award</span> at the <a href="https://xingxingzuo.github.io/MM-SpatialAI/">ICRA 2026 Workshop on Multi-Modal Spatial AI for Robust Navigation and Open-World Understanding</a>.</li>
-                <li><span class="news-date">[Jun 2026]</span> Attending ICRA 2026. See you in Vienna!</li>
-                <li><span class="news-date">[Jan 2026]</span> Our paper <a href="https://existentialrobotics.org/sbp_page/">Seeing the Bigger Picture</a> has been accepted to ICRA 2026!</li>
-                <li><span class="news-date">[Oct 2025]</span> Attending CoRL 2025. See you in Seoul!</li>
-                <li><span class="news-date">[Jun 2025]</span> Attending RSS 2025. See you in LA!</li>
-                <li class="news-more"><span class="news-date">[Jun 2025]</span> Our paper <a href="https://existentialrobotics.org/sbp_page/">Seeing the Bigger Picture</a> received the <span style="color:#ff0000;">Best Paper Nomination</span> at the <a href="https://rss25-roboreps.github.io/index.html">RSS 2025 Workshop on Learned Robot Representations</a>!</li>
-                <li class="news-more"><span class="news-date">[Jun 2025]</span> Our paper MISO has been accepted to RSS 2025!</li>
-                <li class="news-more"><span class="news-date">[Aug 2024]</span> Started my PhD at UC San Diego!</li>
-              </ul>
-              <button type="button" class="news-show-more" id="news-toggle" aria-expanded="false">Show more ▼</button>
-            </td>
-          </tr>
-        </tbody></table>
+        <article class="row align-items-center paper-entry" data-selected="true">
+          <div class="col-md-3">
+            <div class="paper-media">
+              <video data-src="images/sbtp.mp4" poster="images/sbtp.png" muted loop playsinline preload="none" aria-label="Seeing the Bigger Picture project preview"></video>
+            </div>
+          </div>
+          <div class="col-md-9 paper-details">
+            <h3 class="paper-title">Seeing the Bigger Picture: 3D Latent Mapping for Mobile Manipulation Policy Learning</h3>
+            <div class="authors">
+              <strong>Sunghwan Kim</strong>,
+              <a href="https://mastee7.github.io/">Woojeh Chung</a>,
+              <a href="https://daizhirui.github.io/">Zhirui Dai</a>,
+              <a href="https://dwaitbhatt.com/">Dwait Bhatt</a>,
+              <a href="https://arth.website/">Arth Shukla</a>,
+              <a href="https://cseweb.ucsd.edu/~haosu/">Hao Su</a>,
+              <a href="https://www.tianyulun.com/">Yulun Tian</a>,
+              <a href="https://natanaso.github.io//">Nikolay Atanasov</a>
+            </div>
+            <div class="paper-venue">
+              <em><strong>ICRA</strong>, 2026<br>
+              <a href="https://rss-moma-2025.github.io/">RSS 2025 Workshop on Mobile Manipulation</a> (<span class="award">Oral</span>)<br>
+              <a href="https://rss25-roboreps.github.io/index.html">RSS 2025 Workshop on Learned Robot Representations</a> (<span class="award">Best Paper Nomination</span>)</em>
+            </div>
+            <div class="link-badges">
+              <a href="https://arxiv.org/abs/2510.03885" class="badge" target="_blank" rel="noopener noreferrer"><i class="fas fa-book" aria-hidden="true"></i>Paper</a>
+              <a href="https://existentialrobotics.org/sbp_page/" class="badge" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe" aria-hidden="true"></i>Project Page</a>
+              <a href="https://github.com/ExistentialRobotics/SBP" class="badge" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i>Code</a>
+            </div>
+          </div>
+        </article>
 
-        <script>
-          (function() {
-            var toggle = document.getElementById('news-toggle');
-            if (!toggle) return;
-            var moreItems = document.querySelectorAll('.news-more');
-            toggle.addEventListener('click', function() {
-              var expanded = toggle.getAttribute('aria-expanded') === 'true';
-              for (var i = 0; i < moreItems.length; i++) {
-                moreItems[i].style.display = expanded ? 'none' : 'list-item';
-              }
-              toggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-              toggle.textContent = expanded ? 'Show more ▼' : 'Show less ▲';
-            });
-          })();
-        </script>
+        <article class="row align-items-center paper-entry" data-selected="false">
+          <div class="col-md-3">
+            <div class="paper-media">
+              <video data-src="images/MISO.mp4" poster="images/MISO.png" muted loop playsinline preload="none" aria-label="MISO project preview"></video>
+            </div>
+          </div>
+          <div class="col-md-9 paper-details">
+            <h3 class="paper-title">MISO: Multiresolution Submap Optimization for Efficient Globally Consistent Neural Implicit Reconstruction</h3>
+            <div class="authors">
+              <a href="https://www.tianyulun.com/">Yulun Tian</a>,
+              <a href="https://hwcao17.github.io/">Hanwen Cao</a>,
+              <strong>Sunghwan Kim</strong>,
+              <a href="https://natanaso.github.io//">Nikolay Atanasov</a>
+            </div>
+            <div class="paper-venue"><em><strong>RSS</strong>, 2025</em></div>
+            <div class="link-badges">
+              <a href="https://arxiv.org/abs/2504.19104v1" class="badge" target="_blank" rel="noopener noreferrer"><i class="fas fa-book" aria-hidden="true"></i>Paper</a>
+              <a href="https://existentialrobotics.org/miso_rss25/" class="badge" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe" aria-hidden="true"></i>Project Page</a>
+              <a href="https://github.com/ExistentialRobotics/MISO" class="badge" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i>Code</a>
+            </div>
+          </div>
+        </article>
 
-        <!-- ===== Publication ===== -->
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:16px 16px 0 16px;width:100%;vertical-align:middle">
-              <h2>Publication</h2>
-              <p>Papers sorted by recency. Representative papers are highlighted. * indicates equal contribution.</p>
-            </td>
-          </tr>
-        </tbody></table>
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:16px;width:100%;vertical-align:top">
-              <div class="research-cards">
+        <article class="row align-items-center paper-entry" data-selected="false">
+          <div class="col-md-3">
+            <div class="paper-media">
+              <video data-src="images/tqdm.mp4" poster="images/tqdm.png" muted loop playsinline preload="none" aria-label="TQDM project preview"></video>
+            </div>
+          </div>
+          <div class="col-md-9 paper-details">
+            <h3 class="paper-title">Textual Query-Driven Mask Transformer for Domain Generalized Segmentation</h3>
+            <div class="authors">
+              <a href="https://byeonghyunpak.github.io/">Byeonghyun Pak</a>*,
+              <a href="https://byeongjuwoo.github.io//">Byeongju Woo</a>*,
+              <strong>Sunghwan Kim</strong>*, Dae-hwan Kim, Hoseong Kim
+            </div>
+            <div class="paper-venue"><em><strong>ECCV</strong>, 2024</em></div>
+            <div class="link-badges">
+              <a href="https://arxiv.org/pdf/2407.09033" class="badge" target="_blank" rel="noopener noreferrer"><i class="fas fa-book" aria-hidden="true"></i>Paper</a>
+              <a href="https://byeonghyunpak.github.io/tqdm/" class="badge" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe" aria-hidden="true"></i>Project Page</a>
+              <a href="https://github.com/ByeongHyunPak/tqdm" class="badge" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i>Code</a>
+            </div>
+          </div>
+        </article>
 
-                <!-- SERF -->
-                <article class="research-card" style="background-color: #ffffd0;">
-                  <div class="research-card-thumbnail">
-                    <video width="100%" height="100%" muted autoplay loop playsinline>
-                      <source src="images/serf.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                  <div class="research-card-content">
-                    <h3 class="research-title">
-                      SERF: Spatiotemporal Environment and Robot Feature Map for Long-Horizon Mobile Manipulation
-                    </h3>
-                    <p class="research-authors">
-                      <span class="research-author-highlight">Sunghwan Kim</span>*,
-                      <a href="https://byeonghyunpak.github.io/">Byeonghyun Pak</a>*,
-                      <a href="https://kehanlong.github.io/">Kehan Long</a>,
-                      <a href="https://www.tianyulun.com/">Yulun Tian</a>,
-                      <a href="https://natanaso.github.io/">Nikolay Atanasov</a>
-                    </p>
-                    <p class="research-venue">
-                      <em><a href="https://xingxingzuo.github.io/MM-SpatialAI/">IEEE ICRA 2026 Workshop on Multi-Modal Spatial AI</a>
-                      (<span style="color:#ff0000;">Best Paper Award</span>)</em>
-                    </p>
-                    <p class="research-links">
-                      <a href="https://arxiv.org/abs/2606.12956">paper</a> /
-                      <a href="https://existentialrobotics.org/serf/">project page</a> /
-                      <a href="https://github.com/ExistentialRobotics/SERF-VLA">code</a>
-                    </p>
-                  </div>
-                </article>
+        <article class="row align-items-center paper-entry" data-selected="false">
+          <div class="col-md-3">
+            <div class="paper-media">
+              <img class="img-fluid" src="images/TLDR.jpg" alt="Texture Learning Domain Randomization project preview" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="col-md-9 paper-details">
+            <h3 class="paper-title">Texture Learning Domain Randomization for Domain Generalized Segmentation</h3>
+            <div class="authors"><strong>Sunghwan Kim</strong>, Dae-hwan Kim, Hoseong Kim</div>
+            <div class="paper-venue"><em><strong>ICCV</strong>, 2023</em></div>
+            <div class="link-badges">
+              <a href="https://arxiv.org/abs/2303.11546" class="badge" target="_blank" rel="noopener noreferrer"><i class="fas fa-book" aria-hidden="true"></i>Paper</a>
+              <a href="https://github.com/ssssshwan/TLDR" class="badge" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i>Code</a>
+            </div>
+          </div>
+        </article>
 
-                <!-- SBP -->
-                <article class="research-card" style="background-color: #ffffd0;">
-                  <div class="research-card-thumbnail">
-                    <video width="100%" height="100%" muted autoplay loop playsinline>
-                      <source src="images/sbtp.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                  <div class="research-card-content">
-                    <h3 class="research-title">
-                      Seeing the Bigger Picture: 3D Latent Mapping for Mobile Manipulation Policy Learning
-                    </h3>
-                    <p class="research-authors">
-                      <span class="research-author-highlight">Sunghwan Kim</span>,
-                      <a href="https://mastee7.github.io/">Woojeh Chung</a>,
-                      <a href="https://daizhirui.github.io/">Zhirui Dai</a>,
-                      <a href="https://dwaitbhatt.com/">Dwait Bhatt</a>,
-                      <a href="https://arth.website/">Arth Shukla</a>,
-                      <a href="https://cseweb.ucsd.edu/~haosu/">Hao Su</a>,
-                      <a href="https://www.tianyulun.com/">Yulun Tian</a>,
-                      <a href="https://natanaso.github.io//">Nikolay Atanasov</a>
-                    </p>
-                    <p class="research-venue">
-                      <em><strong>ICRA</strong>, 2026<br>
-                      <a href="https://rss-moma-2025.github.io/">RSS 2025 Workshop on Mobile Manipulation</a> (<span style="color:#ff0000;">Oral</span>)<br>
-                      <a href="https://rss25-roboreps.github.io/index.html">RSS 2025 Workshop on Learned Robot Representations</a> (<span style="color:#ff0000;">Best Paper Nomination</span>)</em>
-                    </p>
-                    <p class="research-links">
-                      <a href="https://arxiv.org/abs/2510.03885">paper</a> /
-                      <a href="https://existentialrobotics.org/sbp_page/">project page</a> /
-                      <a href="https://github.com/ExistentialRobotics/SBP">code</a>
-                    </p>
-                  </div>
-                </article>
+        <article class="row align-items-center paper-entry" data-selected="false">
+          <div class="col-md-3">
+            <div class="paper-media">
+              <img class="img-fluid" src="images/Trial.jpg" alt="Data Gathering Trials paper preview" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="col-md-9 paper-details">
+            <h3 class="paper-title">Data Gathering Trials for the Development of Military Imaging Systems</h3>
+            <div class="authors">Maria Niebla, Duncan L. Hickman, Eunjin Koh, Chanyong Lee, Hoseong Kim, Chaehyeon Lim, <strong>Sunghwan Kim</strong></div>
+            <div class="paper-venue"><em>Proc. SPIE, Electro-Optical and Infrared Systems, 2023</em></div>
+            <div class="link-badges">
+              <a href="https://spie.org/spie-sensors-imaging/presentation/Data-gathering-trials-for-the-development-of-military-imaging-systems/12737-27" class="badge" target="_blank" rel="noopener noreferrer"><i class="fas fa-book" aria-hidden="true"></i>Paper</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
 
-                <!-- MISO -->
-                <article class="research-card">
-                  <div class="research-card-thumbnail">
-                    <video width="100%" height="100%" muted autoplay loop playsinline>
-                      <source src="images/MISO.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                  <div class="research-card-content">
-                    <h3 class="research-title">
-                      MISO: Multiresolution Submap Optimization for Efficient Globally Consistent Neural Implicit Reconstruction
-                    </h3>
-                    <p class="research-authors">
-                      <a href="https://www.tianyulun.com/">Yulun Tian</a>,
-                      <a href="https://hwcao17.github.io/">Hanwen Cao</a>,
-                      <span class="research-author-highlight">Sunghwan Kim</span>,
-                      <a href="https://natanaso.github.io//">Nikolay Atanasov</a>
-                    </p>
-                    <p class="research-venue"><em><strong>RSS</strong>, 2025</em></p>
-                    <p class="research-links">
-                      <a href="https://arxiv.org/abs/2504.19104v1">paper</a> /
-                      <a href="https://existentialrobotics.org/miso_rss25/">project page</a> /
-                      <a href="https://github.com/ExistentialRobotics/MISO">code</a>
-                    </p>
-                  </div>
-                </article>
-
-                <!-- tqdm -->
-                <article class="research-card">
-                  <div class="research-card-thumbnail">
-                    <video width="100%" height="100%" muted autoplay loop playsinline>
-                      <source src="images/tqdm.mp4" type="video/mp4">
-                    </video>
-                  </div>
-                  <div class="research-card-content">
-                    <h3 class="research-title">
-                      Textual Query-Driven Mask Transformer for Domain Generalized Segmentation
-                    </h3>
-                    <p class="research-authors">
-                      <a href="https://byeonghyunpak.github.io/">Byeonghyun Pak</a>*,
-                      <a href="https://byeongjuwoo.github.io//">Byeongju Woo</a>*,
-                      <span class="research-author-highlight">Sunghwan Kim</span>*, Dae-hwan Kim, Hoseong Kim
-                    </p>
-                    <p class="research-venue"><em><strong>ECCV</strong>, 2024</em></p>
-                    <p class="research-links">
-                      <a href="https://arxiv.org/pdf/2407.09033">paper</a> /
-                      <a href="https://byeonghyunpak.github.io/tqdm/">project page</a> /
-                      <a href="https://github.com/ByeongHyunPak/tqdm">code</a>
-                    </p>
-                  </div>
-                </article>
-
-                <!-- TLDR -->
-                <article class="research-card">
-                  <div class="research-card-thumbnail">
-                    <img src="images/TLDR.jpg" alt="TLDR thumbnail">
-                  </div>
-                  <div class="research-card-content">
-                    <h3 class="research-title">
-                      Texture Learning Domain Randomization for Domain Generalized Segmentation
-                    </h3>
-                    <p class="research-authors">
-                      <span class="research-author-highlight">Sunghwan Kim</span>, Dae-hwan Kim, Hoseong Kim
-                    </p>
-                    <p class="research-venue"><em><strong>ICCV</strong>, 2023</em></p>
-                    <p class="research-links">
-                      <a href="https://arxiv.org/abs/2303.11546">paper</a> /
-                      <a href="https://github.com/ssssshwan/TLDR">code</a>
-                    </p>
-                  </div>
-                </article>
-
-                <!-- Trial -->
-                <article class="research-card">
-                  <div class="research-card-thumbnail">
-                    <img src="images/Trial.jpg" alt="Trial thumbnail">
-                  </div>
-                  <div class="research-card-content">
-                    <h3 class="research-title">
-                      Data Gathering Trials for the Development of Military Imaging Systems
-                    </h3>
-                    <p class="research-authors">
-                      Maria Niebla, Duncan L. Hickman, Eunjin Koh, Chanyong Lee, Hoseong Kim, Chaehyeon Lim, <span class="research-author-highlight">Sunghwan Kim</span>
-                    </p>
-                    <p class="research-venue"><em>Proc. SPIE, Electro-Optical and Infrared Systems, 2023</em></p>
-                    <p class="research-links">
-                      <a href="https://spie.org/spie-sensors-imaging/presentation/Data-gathering-trials-for-the-development-of-military-imaging-systems/12737-27">paper</a>
-                    </p>
-                  </div>
-                </article>
-
-              </div>
-            </td>
-          </tr>
-        </tbody></table>
-
-        <!-- ===== Clustrmaps ===== -->
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="text-align:center;padding:20px 0;">
-              <div style="pointer-events:none;">
-                <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=150&t=n&d=-ZDMjdvfBBRNBpABEuDJexVuVQtQV-PD13WaCGM7d7I&co=000000'></script>
-              </div>
-            </td>
-          </tr>
-        </tbody></table>
-
-      </td>
-    </tr>
-  </table>
-
+  <footer class="container visitor-map">
+    <div class="map-embed" aria-label="Visitor map">
+      <script id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?cl=ffffff&amp;w=150&amp;t=n&amp;d=-ZDMjdvfBBRNBpABEuDJexVuVQtQV-PD13WaCGM7d7I&amp;co=000000"></script>
+    </div>
+  </footer>
 </body>
-
 </html>
