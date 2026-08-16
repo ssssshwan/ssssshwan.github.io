@@ -16,6 +16,28 @@ function countMatches(source, pattern) {
   return [...source.matchAll(pattern)].length;
 }
 
+function extractSection(source, id) {
+  const match = source.match(
+    new RegExp(`<section\\b(?=[^>]*\\bid="${id}")[^>]*>[\\s\\S]*?<\\/section>`),
+  );
+  assert.ok(match, `missing section: ${id}`);
+  return match[0];
+}
+
+function normalizeText(source) {
+  return source
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function hasHiddenAttribute(tag) {
+  return /\bhidden(?:\s*=|\s|>)/.test(tag);
+}
+
 function createClassList() {
   const values = new Set();
   return {
@@ -98,34 +120,74 @@ test('uses the reference template header and collapsible news structure', () => 
   assert.match(indexHtml, /res\/css\/bootstrap\.min\.css/);
   assert.match(indexHtml, /class="[^"]*col-md-3[^"]*"[\s\S]*Sunghwan\.jpeg/);
   assert.match(indexHtml, /class="[^"]*col-md-9[^"]*"/);
-  assert.equal(countMatches(indexHtml, /class="news-item"/g), 8);
-  assert.match(
-    indexHtml,
-    /<button class="news-toggle"[^>]*data-news-toggle[^>]*aria-expanded="false"[^>]*hidden(?:\s|>)/,
+  const newsSection = extractSection(indexHtml, 'news');
+  const newsListMatch = newsSection.match(
+    /<ul\b(?=[^>]*\bclass="[^"]*\bnews-list\b)[^>]*>([\s\S]*?)<\/ul>/,
   );
-  assert.doesNotMatch(
-    indexHtml,
-    /class="news-item"[^>]*\shidden(?:\s|=|>)/,
-  );
+  assert.ok(newsListMatch, 'missing news list');
+  const newsList = newsListMatch[0];
+  assert.equal(countMatches(newsList, /<li\b/g), 8);
+  assert.equal(countMatches(newsList, /<li\b[^>]*class="[^"]*\bnews-item\b/g), 8);
+  assert.equal(countMatches(newsSection, /class="[^"]*\bnews-item\b/g), 8);
+  assert.doesNotMatch(newsSection, /<li\b[^>]*\bhidden(?:\s*=|\s|>)/);
+  assert.doesNotMatch(newsList, /<ul\b[^>]*\bhidden(?:\s*=|\s|>)/);
+  assert.doesNotMatch(newsSection.match(/^<section[^>]*>/)[0], /\bhidden(?:\s*=|\s|>)/);
+
+  const listEnd = newsSection.indexOf('</ul>');
+  const toggleStart = newsSection.indexOf('data-news-toggle');
+  assert.ok(toggleStart > listEnd, 'news toggle must follow the list');
+  const toggleTag = newsSection.slice(newsSection.lastIndexOf('<button', toggleStart), newsSection.indexOf('>', toggleStart) + 1);
+  assert.match(toggleTag, /\bdata-news-toggle(?:\s|=|>)/);
+  assert.match(toggleTag, /\baria-expanded="false"/);
+  assert.ok(hasHiddenAttribute(toggleTag));
 });
 
 test('links UC San Diego and orders biography and Research content', () => {
   assert.match(indexHtml, /<a href="https:\/\/ucsd\.edu\/">UC San Diego<\/a>/);
-  assert.match(
-    indexHtml,
-    /<p class="previous-experience">[\s\S]*Agency for Defense Development \(ADD\)[\s\S]*KAIST[\s\S]*<\/p>/,
-  );
+  const biographyStart = indexHtml.indexOf('<p>\n            Hi! My name is');
+  const biographyEnd = indexHtml.indexOf('</p>', biographyStart) + '</p>'.length;
+  assert.ok(biographyStart >= 0 && biographyEnd > biographyStart);
+  const followingBiography = indexHtml.slice(biographyEnd, biographyEnd + 120);
+  assert.match(followingBiography, /^\s*<p class="previous-experience">/);
+  const previousExperienceEnd = indexHtml.indexOf('</p>', biographyEnd);
+  const previousExperience = indexHtml.slice(biographyEnd, previousExperienceEnd + '</p>'.length);
+  assert.match(previousExperience, /Agency for Defense Development \(ADD\)/);
+  assert.match(previousExperience, /KAIST/);
 
-  const researchOrder = indexHtml.indexOf('<h2 class="section-title" id="research-heading">Research</h2>');
-  assert.notEqual(researchOrder, -1);
-  const statementOrder = indexHtml.indexOf('<p class="research-statement">', researchOrder);
-  const noteOrder = indexHtml.indexOf('<p class="papers-note">', statementOrder);
-  const filterOrder = indexHtml.indexOf('<div class="paper-filter"', noteOrder);
-  assert.ok(researchOrder < statementOrder);
-  assert.ok(statementOrder < noteOrder);
-  assert.ok(noteOrder < filterOrder);
-  assert.doesNotMatch(indexHtml, /id="papers-heading"/);
-  assert.doesNotMatch(indexHtml, /<h2[^>]*>Papers<\/h2>/);
+  const researchSection = extractSection(indexHtml, 'papers');
+  assert.match(researchSection, /^<section\b(?=[^>]*\bid="papers")(?=[^>]*\baria-labelledby="research-heading")/);
+  const researchHeading = researchSection.search(/<h2\b(?=[^>]*\bid="research-heading")[^>]*>Research<\/h2>/);
+  const statementMatch = researchSection.match(/<p\b(?=[^>]*\bclass="[^"]*\bresearch-statement\b)[^>]*>([\s\S]*?)<\/p>/);
+  const noteStart = researchSection.search(/<p\b(?=[^>]*\bclass="[^"]*\bpapers-note\b)[^>]*>/);
+  const filterStart = researchSection.search(/<div\b(?=[^>]*\bclass="[^"]*\bpaper-filter\b)[^>]*>/);
+  const papersListStart = researchSection.search(/<div\b(?=[^>]*\bclass="[^"]*\bpapers-list\b)[^>]*>/);
+  assert.ok(researchHeading >= 0);
+  assert.ok(statementMatch);
+  const statementStart = statementMatch.index;
+  assert.equal(
+    normalizeText(statementMatch[1]),
+    'My research goal is to enable mobile robots to autonomously perform complex, long-horizon tasks that require both navigation and physical interaction in large-scale, unstructured environments. To this end, I aim to develop structured representations of the physical world and leverage them for task execution and planning. In particular, I am currently exploring how 3D maps can support long-horizon reasoning in visuomotor policies. My research is centered on neural scene representations, simultaneous localization and mapping (SLAM), and robot policy learning (e.g., VLA and model-based RL).',
+  );
+  assert.ok(researchHeading < statementStart);
+  assert.ok(statementStart < noteStart);
+  assert.ok(noteStart < filterStart);
+  assert.ok(filterStart < papersListStart);
+
+  const paperTitles = [
+    'SERF: Spatiotemporal Environment and Robot Feature Map for Long-Horizon Mobile Manipulation',
+    'Seeing the Bigger Picture: 3D Latent Mapping for Mobile Manipulation Policy Learning',
+    'MISO: Multiresolution Submap Optimization for Efficient Globally Consistent Neural Implicit Reconstruction',
+    'Textual Query-Driven Mask Transformer for Domain Generalized Segmentation',
+    'Texture Learning Domain Randomization for Domain Generalized Segmentation',
+    'Data Gathering Trials for the Development of Military Imaging Systems',
+  ];
+  const paperList = researchSection.slice(papersListStart);
+  assert.equal(countMatches(paperList, /<article\b[^>]*class="[^"]*\bpaper-entry\b/g), 6);
+  for (const title of paperTitles) {
+    assert.ok(paperList.includes(title), `missing paper title: ${title}`);
+  }
+  assert.doesNotMatch(researchSection, /id="papers-heading"/);
+  assert.doesNotMatch(researchSection, /<h2[^>]*>Papers<\/h2>/);
 });
 
 test('preserves site metadata, favicon, domain, and visitor map', () => {
