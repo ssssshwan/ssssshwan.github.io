@@ -24,8 +24,8 @@ Apply four small presentation refinements to the approved homepage without chang
 ### Template Acknowledgement
 
 - Add a small acknowledgement at the bottom of the existing footer, after the Clustrmaps visitor map.
-- Use the visible text `Template inspired from` without a person's name.
-- Link the entire visible text to `https://haozhiqi.github.io/`.
+- Use the visible text `Template based on this website` without a person's name.
+- Link only `this website` to `https://haozhiqi.github.io/`.
 - Style it as muted secondary text with compact spacing so it does not compete with the main content.
 
 ## Verification
