@@ -301,6 +301,46 @@ test('preserves all six papers and marks exactly two as selected', () => {
   }
 });
 
+test('uses plain slash-separated paper links without icon dependencies', () => {
+  const researchSection = extractSection(indexHtml, 'papers');
+  const linkGroups = [
+    ...researchSection.matchAll(
+      /<div\b(?=[^>]*\bclass="[^"]*\bpaper-links\b)[^>]*>([\s\S]*?)<\/div>/g,
+    ),
+  ];
+
+  assert.equal(linkGroups.length, 6);
+  assert.deepEqual(
+    linkGroups.map((match) => normalizeText(match[1])),
+    [
+      'Paper / Project Page / Code',
+      'Paper / Project Page / Code',
+      'Paper / Project Page / Code',
+      'Paper / Project Page / Code',
+      'Paper / Code',
+      'Paper',
+    ],
+  );
+  assert.equal(
+    countMatches(
+      researchSection,
+      /class="paper-link-separator" aria-hidden="true">\/<\/span>/g,
+    ),
+    9,
+  );
+  assert.doesNotMatch(researchSection, /class="[^"]*\bbadge\b|<i\b|link-badges/);
+  assert.doesNotMatch(indexHtml, /font-awesome/i);
+
+  const resourceLinks = linkGroups.flatMap((match) => [
+    ...match[1].matchAll(/<a\b[^>]*>/g),
+  ]);
+  assert.equal(resourceLinks.length, 15);
+  resourceLinks.forEach(([tag]) => {
+    assert.match(tag, /target="_blank"/);
+    assert.match(tag, /rel="noopener noreferrer"/);
+  });
+});
+
 test('declares an accessible Selected and All paper filter without hiding fallback content', () => {
   assert.match(indexHtml, /role="group"[^>]*aria-label="Paper filter"/);
   assert.match(indexHtml, /class="paper-filter"[^>]*\shidden(?:\s|>)/);
