@@ -24,6 +24,12 @@ function extractSection(source, id) {
   return match[0];
 }
 
+function extractFooter(source) {
+  const match = source.match(/<footer\b[^>]*>[\s\S]*?<\/footer>/);
+  assert.ok(match, 'missing footer');
+  return match[0];
+}
+
 function normalizeText(source) {
   return source
     .replace(/<[^>]+>/g, ' ')
@@ -215,6 +221,29 @@ test('links UC San Diego and orders biography and Research content', () => {
   assert.doesNotMatch(researchSection, /<h2[^>]*>Papers<\/h2>/);
 });
 
+test('uses plain email, concise Research note, and linked template credit', () => {
+  assert.doesNotMatch(indexHtml, /href="mailto:suk063@ucsd\.edu"/);
+  assert.match(indexHtml, /Email:\s*suk063 AT ucsd\.edu<br>/);
+
+  const researchSection = extractSection(indexHtml, 'papers');
+  const noteMatch = researchSection.match(
+    /<p\b(?=[^>]*\bclass="[^"]*\bpapers-note\b)[^>]*>([\s\S]*?)<\/p>/,
+  );
+  assert.ok(noteMatch, 'missing paper note');
+  assert.equal(normalizeText(noteMatch[1]), '* indicates equal contribution.');
+  assert.doesNotMatch(researchSection, /Papers sorted by recency\./);
+
+  const footer = extractFooter(indexHtml);
+  const mapEnd = footer.indexOf('</div>');
+  const creditStart = footer.indexOf('class="template-credit"');
+  assert.ok(creditStart > mapEnd, 'template credit must follow the visitor map');
+  assert.match(
+    footer,
+    /<a href="https:\/\/haozhiqi\.github\.io\/">Template inspired from<\/a>/,
+  );
+  assert.equal(normalizeText(footer), 'Template inspired from');
+});
+
 test('preserves site metadata, favicon, domain, and visitor map', () => {
   assert.match(indexHtml, /<meta name="author" content="Sunghwan Kim">/);
   assert.match(indexHtml, /<meta name="description" content="Sunghwan Kim/);
@@ -269,6 +298,14 @@ test('news toggle overrides native button appearance', () => {
   assert.match(
     stylesheet,
     /\.news-toggle\s*\{[^}]*-webkit-appearance:\s*none;[^}]*appearance:\s*none;/s,
+  );
+});
+
+test('slightly enlarges the Korean name and keeps template credit secondary', () => {
+  assert.match(stylesheet, /\.korean-name\s*\{[^}]*font-size:\s*0\.65em;/s);
+  assert.match(
+    stylesheet,
+    /\.template-credit\s*\{(?=[^}]*font-size:\s*0\.75rem;)(?=[^}]*color:\s*var\(--muted-text\);)[^}]*\}/s,
   );
 });
 

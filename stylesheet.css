@@ -66,7 +66,7 @@ button:focus-visible,
 
 .korean-name {
   color: #888888;
-  font-size: 0.55em;
+  font-size: 0.65em;
   font-weight: 300;
   letter-spacing: 0.05em;
   white-space: nowrap;
@@ -322,6 +322,22 @@ button:focus-visible,
 
 .map-embed {
   pointer-events: none;
+}
+
+.template-credit {
+  margin: 0.5rem 0 0;
+  color: var(--muted-text);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.template-credit a:link,
+.template-credit a:visited {
+  color: var(--muted-text);
+}
+
+.template-credit a:hover {
+  color: var(--link-hover-color);
 }
 
 @media (max-width: 767.98px) {
