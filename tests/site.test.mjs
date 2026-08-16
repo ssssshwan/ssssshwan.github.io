@@ -396,22 +396,23 @@ test('slightly enlarges the Korean name and keeps template credit secondary', ()
   );
 });
 
-test('keeps focus, colored text, and author links visually distinguishable', () => {
+test('keeps focus and colored text while removing author-link underlines', () => {
   const focusColor = stylesheet.match(/outline:\s*3px solid ([^;]+);/)[1];
   const hoverColor = stylesheet.match(/--link-hover-color:\s*([^;]+);/)[1];
   const koreanRule = stylesheet.match(/\.korean-name\s*\{([^}]*)\}/s)[1];
   const koreanColor = koreanRule.match(/color:\s*([^;]+);/)[1];
   const awardRule = stylesheet.match(/\.award\s*\{([^}]*)\}/s)[1];
   const awardColor = awardRule.match(/color:\s*([^;]+);/)[1];
+  const authorLinkRule = stylesheet.match(
+    /\.authors a:link,[\s\S]*?\.authors a:visited\s*\{([^}]*)\}/,
+  )[1];
 
   assert.ok(contrastAgainstWhite(focusColor) >= 3, 'focus outline contrast');
   assert.ok(contrastAgainstWhite(hoverColor) >= 4.5, 'hover text contrast');
   assert.ok(contrastAgainstWhite(koreanColor) >= 4.5, 'Korean name contrast');
   assert.ok(contrastAgainstWhite(awardColor) >= 4.5, 'award text contrast');
-  assert.match(
-    stylesheet,
-    /\.authors a:link,[\s\S]*?\.authors a:visited\s*\{[^}]*text-decoration:\s*underline;/,
-  );
+  assert.match(authorLinkRule, /text-decoration:\s*none;/);
+  assert.doesNotMatch(authorLinkRule, /underline/);
 });
 
 test('defaults to Selected and switches between two and six papers', () => {

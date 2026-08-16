@@ -281,9 +281,7 @@ button:focus-visible,
 .authors a:link,
 .authors a:visited {
   color: var(--muted-text);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
+  text-decoration: none;
 }
 
 .authors strong {
