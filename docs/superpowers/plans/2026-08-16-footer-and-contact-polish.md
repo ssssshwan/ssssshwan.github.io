@@ -56,9 +56,9 @@ test('uses plain email, concise Research note, and linked template credit', () =
   assert.ok(creditStart > mapEnd, 'template credit must follow the visitor map');
   assert.match(
     footer,
-    /<a href="https:\/\/haozhiqi\.github\.io\/">Template inspired from<\/a>/,
+    /Template based on\s*<a href="https:\/\/haozhiqi\.github\.io\/">this website<\/a>/,
   );
-  assert.equal(normalizeText(footer), 'Template inspired from');
+  assert.equal(normalizeText(footer), 'Template based on this website');
 });
 ```
 
@@ -102,7 +102,7 @@ Append the credit after `.map-embed` but inside the existing footer:
 
 ```html
 <p class="template-credit">
-  <a href="https://haozhiqi.github.io/">Template inspired from</a>
+  Template based on <a href="https://haozhiqi.github.io/">this website</a>
 </p>
 ```
 
