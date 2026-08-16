@@ -560,12 +560,22 @@ test('lazy videos load on intersection and pause outside the viewport', () => {
   assert.equal(video.pauseCalls, 1);
 });
 
-test('video previews avoid inert no-JavaScript controls and provide posters', () => {
+test('video previews avoid inert controls and static poster images', () => {
   assert.equal(countMatches(indexHtml, /<video\b[^>]*\scontrols(?:\s|>)/g), 0);
-  assert.match(
-    indexHtml,
-    /data-src="images\/serf\.mp4"[^>]*poster="images\/serf-poster\.jpg"/,
+  const videoTags = [...indexHtml.matchAll(/<video\b[^>]*>/g)].map(
+    (match) => match[0],
   );
+  assert.equal(videoTags.length, 4);
+  videoTags.forEach((tag) => assert.doesNotMatch(tag, /\sposter=/));
+
+  for (const poster of [
+    'images/serf-poster.jpg',
+    'images/sbtp.png',
+    'images/MISO.png',
+    'images/tqdm.png',
+  ]) {
+    assert.equal(existsSync(path.join(projectRoot, poster)), false, poster);
+  }
 });
 
 test('fallback media loading never plays videos inside hidden papers', () => {
