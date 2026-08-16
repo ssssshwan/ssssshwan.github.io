@@ -24,8 +24,8 @@ Apply four small presentation refinements to the approved homepage without chang
 ### Template Acknowledgement
 
 - Add a small acknowledgement at the bottom of the existing footer, after the Clustrmaps visitor map.
-- Use the visible sentence `Template inspired from Haozhi Qi's site.`.
-- Link only `Haozhi Qi's site` to `https://haozhiqi.github.io/`.
+- Use the visible text `Template inspired from` without a person's name.
+- Link the entire visible text to `https://haozhiqi.github.io/`.
 - Style it as muted secondary text with compact spacing so it does not compete with the main content.
 
 ## Verification
@@ -33,7 +33,7 @@ Apply four small presentation refinements to the approved homepage without chang
 - Confirm no `mailto:` link remains and the visible email text is unchanged.
 - Confirm the recency sentence is absent while the equal-contribution note remains.
 - Confirm `.korean-name` uses `0.65em`.
-- Confirm the acknowledgement follows the visitor map within the footer and uses the approved link and visible text.
+- Confirm the acknowledgement follows the visitor map within the footer, uses the approved link and visible text, and does not display `Haozhi` or `Qi`.
 - Re-run all News, Research, paper-filter, media, asset, HTML5, JavaScript, and diff checks.
 
 ## Out of Scope
