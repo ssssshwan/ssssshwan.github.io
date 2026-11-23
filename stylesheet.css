@@ -178,72 +178,12 @@ button:focus-visible,
   margin-bottom: 1.25rem;
 }
 
-.paper-filter {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.45rem;
-  margin: 0 0 0.35rem;
-  padding: 0;
-  border: 0;
-}
-
-.paper-filter[hidden] {
-  display: none;
-}
-
-.paper-filter-legend,
-.paper-filter-input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
-}
-
-.paper-filter-label {
-  margin: 0;
-  color: var(--link-color);
-  cursor: pointer;
-  font-size: 1rem;
-  line-height: 1.2;
-}
-
-.paper-filter-label:hover {
-  color: var(--link-hover-color);
-}
-
-.paper-filter-input:checked + .paper-filter-label {
-  color: var(--text-color);
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: var(--link-color);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
-}
-
-.paper-filter-input:focus-visible + .paper-filter-label {
-  outline: 3px solid #0071bc;
-  outline-offset: 2px;
-}
-
-.paper-filter-separator {
-  color: #9ca3af;
-}
-
 .paper-entry {
   margin-bottom: 2rem;
 }
 
 .paper-entry:last-child {
   margin-bottom: 0;
-}
-
-.paper-entry[hidden] {
-  display: none !important;
 }
 
 .paper-media {

@@ -89,18 +89,10 @@
       <!-- <p class="research-statement">
         My research goal is to enable mobile robots to autonomously perform complex, long-horizon tasks that require both navigation and physical interaction in large-scale, unstructured environments. To this end, I aim to develop structured representations of the physical world and leverage them for task execution and planning. In particular, I am currently exploring how 3D maps can support spatiotemporal reasoning in visuomotor policies. My research is centered on neural scene representations, simultaneous localization and mapping (SLAM), and robot policy learning (e.g., VLA and model-based RL).
       </p> -->
-      <fieldset class="paper-filter">
-        <legend class="paper-filter-legend">Paper filter</legend>
-        <input class="paper-filter-input" type="radio" name="paper-filter" id="paper-filter-selected" value="selected" checked>
-        <label class="paper-filter-label" for="paper-filter-selected">Selected</label>
-        <span class="paper-filter-separator" aria-hidden="true">/</span>
-        <input class="paper-filter-input" type="radio" name="paper-filter" id="paper-filter-all" value="all">
-        <label class="paper-filter-label" for="paper-filter-all">ALL</label>
-      </fieldset>
       <p class="papers-note">* indicates equal contribution.</p>
 
       <div class="papers-list">
-        <article class="row align-items-center paper-entry" data-selected="true">
+        <article class="row align-items-center paper-entry">
           <div class="col-md-3">
             <div class="paper-media">
               <video data-src="images/serf.mp4" muted loop playsinline preload="none" aria-label="SERF project preview"></video>
@@ -125,7 +117,7 @@
           </div>
         </article>
 
-        <article class="row align-items-center paper-entry" data-selected="true">
+        <article class="row align-items-center paper-entry">
           <div class="col-md-3">
             <div class="paper-media">
               <video data-src="images/sbtp.mp4" muted loop playsinline preload="none" aria-label="Seeing the Bigger Picture project preview"></video>
@@ -154,7 +146,7 @@
           </div>
         </article>
 
-        <article class="row align-items-center paper-entry" data-selected="false" hidden>
+        <article class="row align-items-center paper-entry">
           <div class="col-md-3">
             <div class="paper-media">
               <video data-src="images/MISO.mp4" muted loop playsinline preload="none" aria-label="MISO project preview"></video>
@@ -175,7 +167,7 @@
           </div>
         </article>
 
-        <article class="row align-items-center paper-entry" data-selected="false" hidden>
+        <article class="row align-items-center paper-entry">
           <div class="col-md-3">
             <div class="paper-media">
               <video data-src="images/tqdm.mp4" muted loop playsinline preload="none" aria-label="TQDM project preview"></video>
@@ -195,7 +187,7 @@
           </div>
         </article>
 
-        <article class="row align-items-center paper-entry" data-selected="false" hidden>
+        <article class="row align-items-center paper-entry">
           <div class="col-md-3">
             <div class="paper-media">
               <img class="img-fluid" src="images/TLDR.jpg" alt="Texture Learning Domain Randomization project preview" loading="lazy" decoding="async">
@@ -211,7 +203,7 @@
           </div>
         </article>
 
-        <article class="row align-items-center paper-entry" data-selected="false" hidden>
+        <article class="row align-items-center paper-entry">
           <div class="col-md-3">
             <div class="paper-media">
               <img class="img-fluid" src="images/Trial.jpg" alt="Data Gathering Trials paper preview" loading="lazy" decoding="async">
@@ -247,13 +239,6 @@
           document.querySelectorAll('.news-item'),
         );
         var newsToggle = document.querySelector('[data-news-toggle]');
-        var papers = Array.prototype.slice.call(
-          document.querySelectorAll('.paper-entry[data-selected]'),
-        );
-        var filterInputs = Array.prototype.slice.call(
-          document.querySelectorAll('input[name="paper-filter"]'),
-        );
-        var filterGroup = document.querySelector('.paper-filter');
         var videos = Array.prototype.slice.call(
           document.querySelectorAll('video[data-src]'),
         );
@@ -294,37 +279,6 @@
           }
         }
 
-        function isInHiddenPaper(video) {
-          var paper =
-            typeof video.closest === 'function'
-              ? video.closest('.paper-entry')
-              : null;
-          return Boolean(paper && paper.hidden);
-        }
-
-        function setPaperFilter(filter) {
-          papers.forEach(function (paper) {
-            var shouldHide =
-              filter === 'selected' && paper.dataset.selected !== 'true';
-            var paperVideos =
-              typeof paper.querySelectorAll === 'function'
-                ? Array.prototype.slice.call(paper.querySelectorAll('video'))
-                : [];
-            paper.hidden = shouldHide;
-
-            if (shouldHide) {
-              paperVideos.forEach(function (video) {
-                if (!video.paused) video.pause();
-              });
-            } else if (!observerSupported) {
-              paperVideos.forEach(function (video) {
-                loadVideo(video);
-                playVideo(video);
-              });
-            }
-          });
-        }
-
         if (newsToggle && newsItems.length > 3) {
           newsToggle.addEventListener('click', function () {
             setNewsExpanded(newsToggle.getAttribute('aria-expanded') !== 'true');
@@ -337,23 +291,11 @@
           video.controls = true;
         });
 
-        filterInputs.forEach(function (input) {
-          input.addEventListener('change', function () {
-            if (input.checked) setPaperFilter(input.value);
-          });
-        });
-
-        var initialFilter = filterInputs.find(function (input) {
-          return input.checked;
-        });
-        setPaperFilter(initialFilter ? initialFilter.value : 'selected');
-        if (filterGroup) filterGroup.hidden = false;
-
         if (observerSupported) {
           var observer = new window.IntersectionObserver(
             function (entries) {
               entries.forEach(function (entry) {
-                if (entry.isIntersecting && !isInHiddenPaper(entry.target)) {
+                if (entry.isIntersecting) {
                   loadVideo(entry.target);
                   playVideo(entry.target);
                 } else if (!entry.target.paused) {
@@ -369,10 +311,8 @@
           });
         } else {
           videos.forEach(function (video) {
-            if (!isInHiddenPaper(video)) {
-              loadVideo(video);
-              playVideo(video);
-            }
+            loadVideo(video);
+            playVideo(video);
           });
         }
       }
